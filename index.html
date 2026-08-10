@@ -21,23 +21,22 @@
 
     .container {
       width: min(1100px, calc(100% - 32px));
-      margin: 0 auto;
+      margin: auto;
     }
 
     header {
-      padding: 28px 0 20px;
+      padding: 30px 0 20px;
       text-align: center;
     }
 
     .logo {
-      font-size: 28px;
+      font-size: 29px;
       font-weight: 800;
-      letter-spacing: -1px;
     }
 
     .subtitle {
-      color: #8e8e98;
-      margin-top: 7px;
+      color: #858590;
+      margin-top: 6px;
       font-size: 14px;
     }
 
@@ -45,7 +44,7 @@
       display: flex;
       gap: 10px;
       overflow-x: auto;
-      padding: 12px 0 20px;
+      padding: 12px 0 22px;
       scrollbar-width: none;
     }
 
@@ -54,33 +53,26 @@
     }
 
     .category {
-      border: 1px solid #24242b;
+      border: 1px solid #25252d;
       background: #111116;
       color: #aaaab5;
       border-radius: 14px;
       padding: 12px 17px;
       white-space: nowrap;
       cursor: pointer;
-      transition: .2s;
-      font-size: 14px;
-    }
-
-    .category:hover {
-      border-color: #55555f;
-      color: white;
     }
 
     .category.active {
-      background: #fff;
+      background: white;
       color: #09090b;
       border-color: white;
       font-weight: 700;
     }
 
     .section-title {
-      margin: 10px 0 16px;
       font-size: 22px;
-      font-weight: 750;
+      font-weight: 800;
+      margin: 8px 0 16px;
     }
 
     .products {
@@ -95,29 +87,22 @@
       border: 1px solid #222229;
       border-radius: 18px;
       padding: 18px;
-      transition: .2s;
-    }
-
-    .product:hover {
-      transform: translateY(-2px);
-      border-color: #383842;
     }
 
     .product-icon {
       width: 44px;
       height: 44px;
+      border-radius: 13px;
+      background: #1b1b22;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 13px;
-      background: #1b1b22;
-      font-size: 23px;
+      font-size: 22px;
       margin-bottom: 14px;
     }
 
     .product-name {
       font-weight: 700;
-      font-size: 16px;
     }
 
     .product-description {
@@ -135,7 +120,6 @@
     }
 
     .price {
-      font-size: 17px;
       font-weight: 800;
     }
 
@@ -147,23 +131,18 @@
       padding: 10px 14px;
       font-weight: 700;
       cursor: pointer;
-      transition: .2s;
-    }
-
-    .buy:hover {
-      opacity: .85;
     }
 
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.72);
       display: none;
       align-items: center;
       justify-content: center;
       padding: 18px;
-      z-index: 10;
+      background: rgba(0, 0, 0, .75);
       backdrop-filter: blur(8px);
+      z-index: 10;
     }
 
     .modal.show {
@@ -171,7 +150,7 @@
     }
 
     .modal-content {
-      width: min(450px, 100%);
+      width: min(460px, 100%);
       background: #111116;
       border: 1px solid #292931;
       border-radius: 22px;
@@ -181,26 +160,25 @@
 
     .close {
       position: absolute;
+      top: 12px;
       right: 16px;
-      top: 13px;
+      background: none;
       border: 0;
-      background: transparent;
-      color: #777783;
-      font-size: 25px;
+      color: #888894;
+      font-size: 26px;
       cursor: pointer;
     }
 
     .order-title {
       font-size: 21px;
       font-weight: 800;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .order-box {
       background: #19191f;
       border-radius: 15px;
       padding: 15px;
-      margin-bottom: 15px;
     }
 
     .order-row {
@@ -215,30 +193,50 @@
       color: #858591;
     }
 
-    .order-number {
-      color: #fff;
-      font-weight: 700;
-    }
-
     .payment {
-      border: 1px dashed #3a3a44;
-      border-radius: 15px;
-      padding: 15px;
       margin-top: 15px;
+      padding: 15px;
+      border: 1px dashed #3b3b45;
+      border-radius: 15px;
     }
 
     .payment-title {
       font-weight: 700;
-      margin-bottom: 9px;
+      margin-bottom: 8px;
     }
 
     .payment-text {
-      color: #8d8d98;
+      color: #9a9aa5;
       font-size: 13px;
       line-height: 1.5;
     }
 
-    .close-order {
+    .receipt-label {
+      display: block;
+      margin-top: 15px;
+      background: #1a1a21;
+      border: 1px dashed #40404b;
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+      color: #b1b1bb;
+      cursor: pointer;
+    }
+
+    .
+    receipt-label input {
+      display: none;
+    }
+
+    .selected-file {
+      margin-top: 8px;
+      color: #8f8f9a;
+      font-size: 12px;
+      text-align: center;
+      word-break: break-word;
+    }
+
+    .send {
       width: 100%;
       margin-top: 15px;
       border: 0;
@@ -246,8 +244,20 @@
       color: #09090b;
       border-radius: 13px;
       padding: 13px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
+    }
+
+    .send:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .status {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 13px;
+      color: #9999a4;
     }
 
     @media (max-width: 700px) {
@@ -258,15 +268,11 @@
 
     @media (max-width: 470px) {
       .container {
-        width: min(100% - 20px, 1100px);
+        width: calc(100% - 20px);
       }
 
       .products {
         grid-template-columns: 1fr;
-      }
-
-      .logo {
-        font-size: 25px;
       }
     }
   </style>
@@ -274,72 +280,100 @@
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <header>
-      <div class="logo">Digital Shop</div>
-      <div class="subtitle">Telegram & Roblox</div>
-    </header>
+  <header>
+    <div class="logo">Digital Shop</div>
+    <div class="subtitle">Telegram & Roblox</div>
+  </header>
 
-    <div class="categories">
-      <button class="category active" onclick="showCategory('stars', this)">⭐ Stars</button>
-      <button class="category" onclick="showCategory('premium', this)">💎 Premium</button>
-      <button class="category" onclick="showCategory('gamepass', this)">🎮 Game Pass</button>
-      <button class="category" onclick="showCategory('rf', this)">🇷🇺 Коды РФ</button>
-      <button class="category" onclick="showCategory('world', this)">🌎 Коды мира</button>
+  <div class="categories">
+    <button class="category active" onclick="showCategory('stars', this)">⭐ Stars</button>
+    <button class="category" onclick="showCategory('premium', this)">💎 Premium</button>
+    <button class="category" onclick="showCategory('gamepass', this)">🎮 Game Pass</button>
+    <button class="category" onclick="showCategory('rf', this)">🇷🇺 Коды РФ</button>
+    <button class="category" onclick="showCategory('world', this)">🌎 Коды мира</button>
+  </div>
+
+  <div class="section-title" id="sectionTitle">
+    Telegram Stars
+  </div>
+
+  <div class="products" id="products"></div>
+
+</div>
+
+<div class="modal" id="modal">
+
+  <div class="modal-content">
+
+    <button class="close" onclick="closeModal()">×</button>
+
+    <div class="order-title">
+      Оформление заказа
     </div>
 
-    <div class="section-title" id="sectionTitle">Telegram Stars</div>
+    <div class="order-box">
 
-    <div class="products" id="products"></div>
+      <div class="order-row">
+        <span>Номер заказа</span>
+        <strong id="orderNumber"></strong>
+      </div>
+
+      <div class="order-row">
+        <span>Товар</span>
+        <strong id="orderProduct"></strong>
+      </div>
+
+      <div class="order-row">
+        <span>К оплате</span>
+        <strong id="orderPrice"></strong>
+      </div>
+
+    </div>
+
+    <div class="payment">
+
+      <div class="payment-title">
+        💳 Оплата
+      </div>
+
+      <div class="payment-text">
+        СБП: временные реквизиты<br>
+        <strong>0000 0000 0000</strong><br><br>
+        После оплаты прикрепите фотографию чека.
+      </div>
+
+    </div>
+
+    <label class="receipt-label">
+      📎 Выбрать фотографию чека
+      <input
+        type="file"
+        id="receipt"
+        accept="image/*"
+        onchange="fileSelected()"
+      >
+    </label>
+
+    <div class="selected-file" id="selectedFile">
+      Файл не выбран
+    </div>
+
+    <button class="send" onclick="sendOrder()">
+      Отправить заказ
+    </button>
+
+    <div class="status" id="status"></div>
 
   </div>
 
-  <div class="modal" id="modal">
-    <div class="modal-content">
-
-      <button class="close" onclick="closeModal()">×</button>
-
-      <div class="order-title">Оформление заказа</div>
-
-      <div class="order-box">
-
-        <div class="order-row">
-          <span>Номер заказа</span>
-          <span class="order-number" id="orderNumber"></span>
-        </div>
-
-        <div class="order-row">
-          <span>Товар</span>
-          <span id="orderProduct"></span>
-        </div>
-
-        <div class="order-row">
-          <span>К оплате</span>
-          <strong id="orderPrice"></strong>
-        </div>
-
-      </div>
-
-      <div class="payment">
-
-        <div class="payment-title">💳 Оплата</div>
-
-        <div class="payment-text">
-          Здесь позже будут отображаться твои реквизиты для оплаты.
-          После оплаты покупатель сможет прикрепить фотографию чека.
-        </div>
-
-      </div>
-
-      <button class="close-order" onclick="closeModal()">
-        Понятно
-      </button>
-
-    </div>
-  </div>
+</div>
 
 <script>
+
+const API_URL =
+  "https://telegram-shop-api.dvpalov.workers.dev/order";
 
 const data = {
 
@@ -426,6 +460,10 @@ const data = {
 
 };
 
+let selectedProduct = null;
+let selectedPrice = null;
+let selectedOrder = null;
+
 function showCategory(category, button) {
 
   document.querySelectorAll(".category")
@@ -435,8 +473,8 @@ function showCategory(category, button) {
 
   const categoryData = data[category];
 
-  document.getElementById("sectionTitle").textContent =
-    categoryData.title;
+  document.getElementById("sectionTitle")
+    .textContent = categoryData.title;
 
   const products = document.getElementById("products");
 
@@ -452,14 +490,16 @@ function showCategory(category, button) {
     card.className = "product";
 
     card.innerHTML = `
-      <div class="product-icon">${categoryData.icon}</div>
+      <div class="product-icon">
+        ${categoryData.icon}
+      </div>
 
       <div class="product-name">
         ${name}
       </div>
 
       <div class="product-description">
-        Моментальная обработка заказа
+        Обработка заказа
       </div>
 
       <div class="product-bottom">
@@ -468,7 +508,8 @@ function showCategory(category, button) {
           ${price.toLocaleString("ru-RU")} ₽
         </div>
 
-        <button class="buy"
+        <button
+          class="buy"
           onclick="openOrder('${name}', ${price})">
           Купить
         </button>
@@ -477,19 +518,20 @@ function showCategory(category, button) {
     `;
 
     products.appendChild(card);
-
   });
-
 }
 
 function openOrder(product, price) {
 
-  const orderNumber =
+  selectedProduct = product;
+  selectedPrice = price;
+
+  selectedOrder =
     "DS-" +
     Date.now().toString().slice(-8);
 
   document.getElementById("orderNumber")
-    .textContent = orderNumber;
+    .textContent = selectedOrder;
 
   document.getElementById("orderProduct")
     .textContent = product;
@@ -498,6 +540,14 @@ function openOrder(product, price) {
     .textContent =
     price.toLocaleString("ru-RU") + " ₽";
 
+  document.getElementById("status")
+    .textContent = "";
+
+  document.getElementById("receipt").value = "";
+
+  document.getElementById("selectedFile")
+    .textContent = "Файл не выбран";
+
   document.getElementById("modal")
     .classList.add("show");
 }
@@ -505,6 +555,84 @@ function openOrder(product, price) {
 function closeModal() {
   document.getElementById("modal")
     .classList.remove("show");
+}
+
+function fileSelected() {
+
+  const file =
+    document.getElementById("receipt").files[0];
+
+  document.getElementById("selectedFile")
+    .textContent =
+    file ? file.name : "Файл не выбран";
+}
+
+async function sendOrder() {
+
+  const file =
+    document.getElementById("receipt").files[0];
+
+  const status =
+    document.getElementById("status");
+
+  if (!file) {
+    status.textContent =
+      "❗ Сначала прикрепите фотографию чека.";
+    return;
+  }
+
+  status.textContent =
+    "⏳ Отправляем заказ...";
+
+  const formData = new FormData();
+
+  formData.append(
+    "orderNumber",
+    selectedOrder
+  );
+
+  formData.append(
+    "product",
+    selectedProduct
+  );
+
+  formData.append(
+    "price",
+    selectedPrice
+  );
+
+  formData.append(
+    "receipt",
+    file
+  );
+
+  try {
+
+    const response =
+      await fetch(API_URL, {
+        method: "POST",
+        body: formData
+      });
+
+    const result =
+      await response.json();
+
+    if (!result.ok) {
+      throw new Error(
+        result.error || "Ошибка сервера"
+      );
+    }
+
+    status.textContent =
+      "✅ Заказ отправлен!";
+
+  } catch (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "❌ Не удалось отправить заказ. Попробуйте ещё раз.";
+  }
 }
 
 showCategory(
