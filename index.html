@@ -199,7 +199,31 @@
       border: 1px dashed #3b3b45;
       border-radius: 15px;
     }
+.username-box {
+  margin-top: 15px;
+}
 
+.username-box label {
+  display: block;
+  margin-bottom: 8px;
+  color: #9a9aa5;
+  font-size: 13px;
+}
+
+.username-box input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #30303a;
+  background: #19191f;
+  color: white;
+  border-radius: 13px;
+  outline: none;
+  font-size: 14px;
+}
+
+.username-box input:focus {
+  border-color: #666674;
+}
     .payment-title {
       font-weight: 700;
       margin-bottom: 8px;
@@ -331,7 +355,25 @@
       </div>
 
     </div>
+    <div class="username-box">
+  <label for="username">
+    👤 Твой Telegram username
+  </label>
 
+  <input
+    type="text"
+    id="username"
+    placeholder="@username"
+    autocomplete="off"
+  >
+</div>
+  <input
+    type="text"
+    id="username"
+    placeholder="@username"
+    autocomplete="off"
+  >
+</div>
     <div class="payment">
 
       <div class="payment-title">
@@ -572,8 +614,25 @@ async function sendOrder() {
   const file =
     document.getElementById("receipt").files[0];
 
+  const usernameInput =
+    document.getElementById("username");
+
   const status =
     document.getElementById("status");
+
+  let username =
+    usernameInput.value.trim();
+
+  if (!username) {
+    status.textContent =
+      "❗ Укажите ваш Telegram username.";
+    usernameInput.focus();
+    return;
+  }
+
+  if (!username.startsWith("@")) {
+    username = "@" + username;
+  }
 
   if (!file) {
     status.textContent =
@@ -581,6 +640,69 @@ async function sendOrder() {
     return;
   }
 
+  status.textContent =
+    "⏳ Отправляем заказ...";
+
+  const formData = new FormData();
+
+  formData.append(
+    "orderNumber",
+    selectedOrder
+  );
+
+  formData.append(
+    "product",
+    selectedProduct
+  );
+
+  formData.append(
+    "quantity",
+    selectedProduct
+  );
+
+  formData.append(
+    "price",
+    selectedPrice
+  );
+
+  formData.append(
+    "username",
+    username
+  );
+
+  formData.append(
+    "receipt",
+    file
+  );
+
+  try {
+
+    const response =
+      await fetch(API_URL, {
+        method: "POST",
+        body: formData
+      });
+
+    const result =
+      await response.json();
+
+    if (!result.ok) {
+      throw new Error(
+        result.error || "Ошибка сервера"
+      );
+    }
+
+    status.textContent =
+      "✅ Заказ отправлен!";
+
+  } catch (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "❌ Не удалось отправить заказ. Попробуйте ещё раз.";
+  }
+}
   status.textContent =
     "⏳ Отправляем заказ...";
 
