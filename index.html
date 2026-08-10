@@ -608,7 +608,6 @@ function fileSelected() {
     .textContent =
     file ? file.name : "Файл не выбран";
 }
-
 async function sendOrder() {
 
   const file =
@@ -668,59 +667,6 @@ async function sendOrder() {
   formData.append(
     "username",
     username
-  );
-
-  formData.append(
-    "receipt",
-    file
-  );
-
-  try {
-
-    const response =
-      await fetch(API_URL, {
-        method: "POST",
-        body: formData
-      });
-
-    const result =
-      await response.json();
-
-    if (!result.ok) {
-      throw new Error(
-        result.error || "Ошибка сервера"
-      );
-    }
-
-    status.textContent =
-      "✅ Заказ отправлен!";
-
-  } catch (error) {
-
-    console.error(error);
-
-    status.textContent =
-      "❌ Не удалось отправить заказ. Попробуйте ещё раз.";
-  }
-}
-  status.textContent =
-    "⏳ Отправляем заказ...";
-
-  const formData = new FormData();
-
-  formData.append(
-    "orderNumber",
-    selectedOrder
-  );
-
-  formData.append(
-    "product",
-    selectedProduct
-  );
-
-  formData.append(
-    "price",
-    selectedPrice
   );
 
   formData.append(
