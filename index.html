@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Shop</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #09090b;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 28px 0 20px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      color: #8e8e98;
+      margin-top: 7px;
+      font-size: 14px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 12px 0 20px;
+      scrollbar-width: none;
+    }
+
+    .categories::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category {
+      border: 1px solid #24242b;
+      background: #111116;
+      color: #aaaab5;
+      border-radius: 14px;
+      padding: 12px 17px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: .2s;
+      font-size: 14px;
+    }
+
+    .category:hover {
+      border-color: #55555f;
+      color: white;
+    }
+
+    .category.active {
+      background: #fff;
+      color: #09090b;
+      border-color: white;
+      font-weight: 700;
+    }
+
+    .section-title {
+      margin: 10px 0 16px;
+      font-size: 22px;
+      font-weight: 750;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding-bottom: 50px;
+    }
+
+    .product {
+      background: #111116;
+      border: 1px solid #222229;
+      border-radius: 18px;
+      padding: 18px;
+      transition: .2s;
+    }
+
+    .product:hover {
+      transform: translateY(-2px);
+      border-color: #383842;
+    }
+
+    .product-icon {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      background: #1b1b22;
+      font-size: 23px;
+      margin-bottom: 14px;
+    }
+
+    .product-name {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .product-description {
+      color: #777783;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .price {
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .buy {
+      border: 0;
+      background: white;
+      color: #09090b;
+      border-radius: 11px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .buy:hover {
+      opacity: .85;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      width: min(450px, 100%);
+      background: #111116;
+      border: 1px solid #292931;
+      border-radius: 22px;
+      padding: 23px;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      right: 16px;
+      top: 13px;
+      border: 0;
+      background: transparent;
+      color: #777783;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    .order-title {
+      font-size: 21px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .order-box {
+      background: #19191f;
+      border-radius: 15px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 7px 0;
+      font-size: 14px;
+    }
+
+    .order-row span:first-child {
+      color: #858591;
+    }
+
+    .order-number {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .payment {
+      border: 1px dashed #3a3a44;
+      border-radius: 15px;
+      padding: 15px;
+      margin-top: 15px;
+    }
+
+    .payment-title {
+      font-weight: 700;
+      margin-bottom: 9px;
+    }
+
+    .payment-text {
+      color: #8d8d98;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .close-order {
+      width: 100%;
+      margin-top: 15px;
+      border: 0;
+      background: white;
+      color: #09090b;
+      border-radius: 13px;
+      padding: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 700px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 470px) {
+      .container {
+        width: min(100% - 20px, 1100px);
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .logo {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header>
+      <div class="logo">Digital Shop</div>
+      <div class="subtitle">Telegram & Roblox</div>
+    </header>
+
+    <div class="categories">
+      <button class="category active" onclick="showCategory('stars', this)">⭐ Stars</button>
+      <button class="category" onclick="showCategory('premium', this)">💎 Premium</button>
+      <button class="category" onclick="showCategory('gamepass', this)">🎮 Game Pass</button>
+      <button class="category" onclick="showCategory('rf', this)">🇷🇺 Коды РФ</button>
+      <button class="category" onclick="showCategory('world', this)">🌎 Коды мира</button>
+    </div>
+
+    <div class="section-title" id="sectionTitle">Telegram Stars</div>
+
+    <div class="products" id="products"></div>
+
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+
+      <button class="close" onclick="closeModal()">×</button>
+
+      <div class="order-title">Оформление заказа</div>
+
+      <div class="order-box">
+
+        <div class="order-row">
+          <span>Номер заказа</span>
+          <span class="order-number" id="orderNumber"></span>
+        </div>
+
+        <div class="order-row">
+          <span>Товар</span>
+          <span id="orderProduct"></span>
+        </div>
+
+        <div class="order-row">
+          <span>К оплате</span>
+          <strong id="orderPrice"></strong>
+        </div>
+
+      </div>
+
+      <div class="payment">
+
+        <div class="payment-title">💳 Оплата</div>
+
+        <div class="payment-text">
+          Здесь позже будут отображаться твои реквизиты для оплаты.
+          После оплаты покупатель сможет прикрепить фотографию чека.
+        </div>
+
+      </div>
+
+      <button class="close-order" onclick="closeModal()">
+        Понятно
+      </button>
+
+    </div>
+  </div>
+
+<script>
+
+const data = {
+
+  stars: {
+    title: "Telegram Stars",
+    icon: "⭐",
+    products: [
+      ["50 Stars", 77],
+      ["100 Stars", 115],
+      ["150 Stars", 227],
+      ["250 Stars", 378],
+      ["350 Stars", 530],
+      ["500 Stars", 760],
+      ["750 Stars", 1140],
+      ["1000 Stars", 1510],
+      ["1500 Stars", 2280],
+      ["2500 Stars", 3775],
+      ["5000 Stars", 7560],
+      ["10000 Stars", 15100]
+    ]
+  },
+
+  premium: {
+    title: "Telegram Premium",
+    icon: "💎",
+    products: [
+      ["Premium — 3 месяца", 1200],
+      ["Premium — 6 месяцев", 1590],
+      ["Premium — 1 год", 2880]
+    ]
+  },
+
+  gamepass: {
+    title: "Roblox — Game Pass",
+    icon: "🎮",
+    products: [
+      ["50 Robux", 41],
+      ["100 Robux", 80],
+      ["150 Robux", 120],
+      ["200 Robux", 160],
+      ["250 Robux", 200],
+      ["300 Robux", 240],
+      ["350 Robux", 279],
+      ["400 Robux", 320],
+      ["450 Robux", 358],
+      ["500 Robux", 397],
+      ["550 Robux", 438],
+      ["600 Robux", 477],
+      ["650 Robux", 521],
+      ["700 Robux", 562],
+      ["750 Robux", 601],
+      ["800 Robux", 642],
+      ["850 Robux", 682],
+      ["900 Robux", 722],
+      ["950 Robux", 762],
+      ["1000 Robux", 802],
+      ["2000 Robux", 1592],
+      ["3000 Robux", 2372],
+      ["4000 Robux", 3162],
+      ["5000 Robux", 3970]
+    ]
+  },
+
+  rf: {
+    title: "Roblox — Коды РФ",
+    icon: "🎁",
+    products: [
+      ["500 Robux", 672],
+      ["1000 Robux", 1382],
+      ["4000 Robux", 5492],
+      ["5250 Robux", 7212]
+    ]
+  },
+
+  world: {
+    title: "Roblox — Коды мира",
+    icon: "🌎",
+    products: [
+      ["200 Robux", 350],
+      ["2000 Robux", 2182],
+      ["10000 Robux", 9552]
+    ]
+  }
+
+};
+
+function showCategory(category, button) {
+
+  document.querySelectorAll(".category")
+    .forEach(item => item.classList.remove("active"));
+
+  button.classList.add("active");
+
+  const categoryData = data[category];
+
+  document.getElementById("sectionTitle").textContent =
+    categoryData.title;
+
+  const products = document.getElementById("products");
+
+  products.innerHTML = "";
+
+  categoryData.products.forEach(product => {
+
+    const name = product[0];
+    const price = product[1];
+
+    const card = document.createElement("div");
+
+    card.className = "product";
+
+    card.innerHTML = `
+      <div class="product-icon">${categoryData.icon}</div>
+
+      <div class="product-name">
+        ${name}
+      </div>
+
+      <div class="product-description">
+        Моментальная обработка заказа
+      </div>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          ${price.toLocaleString("ru-RU")} ₽
+        </div>
+
+        <button class="buy"
+          onclick="openOrder('${name}', ${price})">
+          Купить
+        </button>
+
+      </div>
+    `;
+
+    products.appendChild(card);
+
+  });
+
+}
+
+function openOrder(product, price) {
+
+  const orderNumber =
+    "DS-" +
+    Date.now().toString().slice(-8);
+
+  document.getElementById("orderNumber")
+    .textContent = orderNumber;
+
+  document.getElementById("orderProduct")
+    .textContent = product;
+
+  document.getElementById("orderPrice")
+    .textContent =
+    price.toLocaleString("ru-RU") + " ₽";
+
+  document.getElementById("modal")
+    .classList.add("show");
+}
+
+function closeModal() {
+  document.getElementById("modal")
+    .classList.remove("show");
+}
+
+showCategory(
+  "stars",
+  document.querySelector(".category")
+);
+
+</script>
+
+</body>
+</html>
