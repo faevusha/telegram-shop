@@ -1148,39 +1148,27 @@ async function sendOrder() {
   }
 
 
-  const telegramUser =
-    tg.initDataUnsafe &&
-    tg.initDataUnsafe.user
-      ? tg.initDataUnsafe.user
-      : null;
-
-  const chatId =
-    telegramUser &&
-    telegramUser.id
-      ? String(telegramUser.id)
-      : "";
-
-
   const telegramInitData =
-    tg.initData || "";
+  tg && typeof tg.initData === "string"
+    ? tg.initData
+    : "";
 
+const telegramUser =
+  tg &&
+  tg.initDataUnsafe &&
+  tg.initDataUnsafe.user
+    ? tg.initDataUnsafe.user
+    : null;
 
-  if (!chatId) {
+const chatId =
+  telegramUser &&
+  telegramUser.id
+    ? String(telegramUser.id)
+    : "";
 
-    status.textContent =
-      "❌ Не удалось определить ваш Telegram ID. Откройте Mini App через бота.";
-
-    return;
-  }
-
-
-  if (!telegramInitData) {
-
-    status.textContent =
-      "❌ Telegram не передал данные Mini App. Откройте магазин через бота.";
-
-    return;
-  }
+console.log("Telegram initData:", telegramInitData);
+console.log("Telegram user:", telegramUser);
+console.log("Telegram chatId:", chatId);
 
 
   // ----------------------------------------------
