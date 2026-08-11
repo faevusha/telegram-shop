@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
 
   <meta charset="UTF-8">
@@ -11,8 +10,6 @@
   >
 
   <title>faevu shop</title>
-
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <style>
 
@@ -43,10 +40,6 @@
       font: inherit;
     }
 
-    button {
-      -webkit-tap-highlight-color: transparent;
-    }
-
     .container {
       width: min(
         1100px,
@@ -71,6 +64,7 @@
 
       display: flex;
       flex-direction: column;
+
       align-items: center;
       justify-content: center;
 
@@ -80,11 +74,8 @@
     }
 
     .hero-logo {
-      font-size: clamp(
-        36px,
-        9vw,
-        64px
-      );
+      font-size:
+        clamp(36px, 9vw, 64px);
 
       font-weight: 900;
       letter-spacing: -2px;
@@ -124,7 +115,8 @@
     }
 
     .main-buy:hover {
-      transform: translateY(-2px);
+      transform:
+        translateY(-2px);
     }
 
     .home-links {
@@ -165,7 +157,9 @@
 
     .home-link:hover {
       background: #18181f;
-      transform: translateY(-2px);
+
+      transform:
+        translateY(-2px);
     }
 
     .scroll-hint {
@@ -178,8 +172,7 @@
 
     .advantages {
       padding:
-        70px 0
-        100px;
+        70px 0 100px;
     }
 
     .advantages-title {
@@ -215,6 +208,7 @@
 
     .advantage-icon {
       font-size: 30px;
+
       margin-bottom: 20px;
     }
 
@@ -238,6 +232,7 @@
 
     .shop {
       display: none;
+
       padding-bottom: 60px;
     }
 
@@ -246,9 +241,11 @@
     }
 
     .shop-header {
-      padding: 30px 0 10px;
+      padding:
+        30px 0 10px;
 
       display: flex;
+
       align-items: center;
       justify-content: space-between;
 
@@ -290,8 +287,7 @@
       overflow-x: auto;
 
       padding:
-        12px 0
-        22px;
+        12px 0 22px;
 
       scrollbar-width: none;
     }
@@ -309,8 +305,7 @@
 
       border-radius: 14px;
 
-      padding:
-        12px 17px;
+      padding: 12px 17px;
 
       white-space: nowrap;
 
@@ -331,8 +326,7 @@
       font-weight: 800;
 
       margin:
-        8px 0
-        16px;
+        8px 0 16px;
     }
 
     .products {
@@ -366,6 +360,7 @@
       background: #1b1b22;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -409,8 +404,7 @@
 
       border-radius: 11px;
 
-      padding:
-        10px 14px;
+      padding: 10px 14px;
 
       font-weight: 700;
 
@@ -531,6 +525,7 @@
 
     .payment-title {
       font-weight: 700;
+
       margin-bottom: 10px;
     }
 
@@ -620,6 +615,7 @@
         1px solid #30303a;
 
       background: #19191f;
+
       color: white;
 
       border-radius: 13px;
@@ -630,7 +626,8 @@
     }
 
     .username-box input:focus {
-      border-color: #666674;
+      border-color:
+        #666674;
     }
 
     .receipt-label {
@@ -678,6 +675,7 @@
       border: 0;
 
       background: white;
+
       color: #09090b;
 
       border-radius: 13px;
@@ -691,7 +689,8 @@
 
     .send:disabled {
       opacity: .5;
-      cursor: wait;
+
+      cursor: not-allowed;
     }
 
     .status {
@@ -702,9 +701,11 @@
       font-size: 13px;
 
       color: #9999a4;
-
-      min-height: 20px;
     }
+
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 700px) {
 
@@ -747,7 +748,7 @@
 <body>
 
 <!-- =========================
-     HOME
+     ГЛАВНАЯ
 ========================= -->
 
 <section
@@ -770,7 +771,6 @@
 
       <button
         class="main-buy"
-        type="button"
         onclick="openShop()"
       >
         🛒 Совершить покупку
@@ -869,8 +869,9 @@
 
 </section>
 
+
 <!-- =========================
-     SHOP
+     МАГАЗИН
 ========================= -->
 
 <section
@@ -896,7 +897,6 @@
 
       <button
         class="back-home"
-        type="button"
         onclick="openHome()"
       >
         ← Главная
@@ -904,11 +904,11 @@
 
     </div>
 
+
     <div class="categories">
 
       <button
         class="category active"
-        type="button"
         onclick="showCategory('stars', this)"
       >
         ⭐️ Stars
@@ -916,7 +916,6 @@
 
       <button
         class="category"
-        type="button"
         onclick="showCategory('premium', this)"
       >
         💎 Premium
@@ -924,7 +923,6 @@
 
       <button
         class="category"
-        type="button"
         onclick="showCategory('gamepass', this)"
       >
         🎮 Game Pass
@@ -932,7 +930,6 @@
 
       <button
         class="category"
-        type="button"
         onclick="showCategory('rf', this)"
       >
         🇷🇺 Коды РФ
@@ -940,7 +937,6 @@
 
       <button
         class="category"
-        type="button"
         onclick="showCategory('world', this)"
       >
         🌎 Коды мира
@@ -948,12 +944,14 @@
 
     </div>
 
+
     <div
       class="section-title"
       id="sectionTitle"
     >
       Telegram Stars
     </div>
+
 
     <div
       class="products"
@@ -964,8 +962,9 @@
 
 </section>
 
+
 <!-- =========================
-     ORDER MODAL
+     ЗАКАЗ
 ========================= -->
 
 <div
@@ -977,36 +976,54 @@
 
     <button
       class="close"
-      type="button"
       onclick="closeModal()"
     >
       ×
     </button>
 
+
     <div class="order-title">
       Оформление заказа
     </div>
 
+
     <div class="order-box">
 
       <div class="order-row">
-        <span>Номер заказа</span>
+
+        <span>
+          Номер заказа
+        </span>
+
         <strong id="orderNumber"></strong>
+
       </div>
 
+
       <div class="order-row">
-        <span>Товар</span>
+
+        <span>
+          Товар
+        </span>
+
         <strong id="orderProduct"></strong>
+
       </div>
 
+
       <div class="order-row">
-        <span>К оплате</span>
+
+        <span>
+          К оплате
+        </span>
+
         <strong id="orderPrice"></strong>
+
       </div>
+
 
       <button
         class="order-copy"
-        type="button"
         onclick="copyOrderNumber()"
       >
         📋 Скопировать номер заказа
@@ -1014,7 +1031,8 @@
 
     </div>
 
-    <!-- PAYMENT -->
+
+    <!-- ОПЛАТА -->
 
     <div class="payment">
 
@@ -1024,37 +1042,57 @@
 
       <div class="payment-text">
         Переведите необходимую сумму по указанным
-        реквизитам и после оплаты прикрепите скриншот.
+        реквизитам, после чего прикрепите скриншот оплаты.
       </div>
+
 
       <div class="payment-details">
 
-        <strong>Номер телефона:</strong><br>
-
-        +7 923 022 93 23
+        <strong>
+          ⚠️ При переводе по номеру телефона
+        </strong>
 
         <br>
 
-        <small>
-          ⚠️ Перевод по номеру телефона осуществляйте
-          только на Т-Банк.
-        </small>
+        Переводить только на
+        <strong>Т-Банк</strong>.
 
         <br><br>
 
-        <strong>Номер карты:</strong><br>
+        <strong>
+          Номер телефона:
+        </strong>
+
+        <br>
+
+        +7 923 022 93 23
+
+        <br><br>
+
+        <strong>
+          Номер карты:
+        </strong>
+
+        <br>
 
         2200 3961 1188 2920
 
       </div>
 
+
       <div class="payment-warning">
 
-        ⚠️ <strong>ВАЖНО!</strong><br>
+        ⚠️ <strong>ВАЖНО!</strong>
 
-        Обязательно укажите
+        <br><br>
+
+        Обязательно укажите номер заказа
+
         <strong id="paymentOrderNumber"></strong>
-        <strong> в сообщении к переводу.</strong>
+
+        <strong>
+          в сообщении к переводу.
+        </strong>
 
         <br><br>
 
@@ -1064,6 +1102,7 @@
       </div>
 
     </div>
+
 
     <!-- USERNAME -->
 
@@ -1082,7 +1121,8 @@
 
     </div>
 
-    <!-- RECEIPT -->
+
+    <!-- СКРИНШОТ -->
 
     <label class="receipt-label">
 
@@ -1097,6 +1137,7 @@
 
     </label>
 
+
     <div
       class="selected-file"
       id="selectedFile"
@@ -1104,14 +1145,15 @@
       Файл не выбран
     </div>
 
+
     <button
       class="send"
       id="sendButton"
-      type="button"
       onclick="sendOrder()"
     >
       Отправить заказ
     </button>
+
 
     <div
       class="status"
@@ -1122,19 +1164,8 @@
 
 </div>
 
+
 <script>
-
-/* ======================================================
-   TELEGRAM MINI APP
-====================================================== */
-
-const tg =
-  window.Telegram?.WebApp || null;
-
-if (tg) {
-  tg.ready();
-  tg.expand();
-}
 
 /* ======================================================
    API
@@ -1143,8 +1174,9 @@ if (tg) {
 const API_URL =
   "https://telegram-shop-api.dvpalov.workers.dev/order";
 
+
 /* ======================================================
-   PRODUCTS
+   ТОВАРЫ
 ====================================================== */
 
 const data = {
@@ -1172,6 +1204,7 @@ const data = {
 
   },
 
+
   premium: {
 
     title: "Telegram Premium",
@@ -1185,6 +1218,7 @@ const data = {
     ]
 
   },
+
 
   gamepass: {
 
@@ -1221,6 +1255,7 @@ const data = {
 
   },
 
+
   rf: {
 
     title: "Roblox — Коды РФ",
@@ -1235,6 +1270,7 @@ const data = {
     ]
 
   },
+
 
   world: {
 
@@ -1254,24 +1290,28 @@ const data = {
 
 };
 
+
 /* ======================================================
-   ORDER STATE
+   СОСТОЯНИЕ
 ====================================================== */
 
 let selectedProduct = null;
 let selectedPrice = null;
 let selectedOrder = null;
 
+
 /* ======================================================
-   HOME / SHOP
+   ГЛАВНАЯ
 ====================================================== */
 
 function openShop() {
 
-  document.getElementById("home")
+  document
+    .getElementById("home")
     .style.display = "none";
 
-  document.getElementById("shop")
+  document
+    .getElementById("shop")
     .classList.add("show");
 
   window.scrollTo({
@@ -1281,12 +1321,15 @@ function openShop() {
 
 }
 
+
 function openHome() {
 
-  document.getElementById("shop")
+  document
+    .getElementById("shop")
     .classList.remove("show");
 
-  document.getElementById("home")
+  document
+    .getElementById("home")
     .style.display = "block";
 
   window.scrollTo({
@@ -1296,11 +1339,15 @@ function openHome() {
 
 }
 
+
 /* ======================================================
-   CATEGORIES
+   КАТЕГОРИИ
 ====================================================== */
 
-function showCategory(category, button) {
+function showCategory(
+  category,
+  button
+) {
 
   document
     .querySelectorAll(".category")
@@ -1313,7 +1360,8 @@ function showCategory(category, button) {
   const categoryData =
     data[category];
 
-  document.getElementById("sectionTitle")
+  document
+    .getElementById("sectionTitle")
     .textContent =
     categoryData.title;
 
@@ -1332,66 +1380,48 @@ function showCategory(category, button) {
         product[1];
 
       const card =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
 
       card.className =
         "product";
 
-      const icon =
-        document.createElement("div");
+      card.innerHTML = `
 
-      icon.className =
-        "product-icon";
+        <div class="product-icon">
+          ${categoryData.icon}
+        </div>
 
-      icon.textContent =
-        categoryData.icon;
+        <div class="product-name">
+          ${name}
+        </div>
 
-      const productName =
-        document.createElement("div");
+        <div class="product-description">
+          Обработка заказа
+        </div>
 
-      productName.className =
-        "product-name";
+        <div class="product-bottom">
 
-      productName.textContent =
-        name;
+          <div class="price">
+            ${price.toLocaleString("ru-RU")} ₽
+          </div>
 
-      const description =
-        document.createElement("div");
+          <button
+            class="buy"
+            type="button"
+          >
+            Купить
+          </button>
 
-      description.className =
-        "product-description";
+        </div>
 
-      description.textContent =
-        "Обработка заказа";
+      `;
 
-      const bottom =
-        document.createElement("div");
+      const buyButton =
+        card.querySelector(".buy");
 
-      bottom.className =
-        "product-bottom";
-
-      const priceElement =
-        document.createElement("div");
-
-      priceElement.className =
-        "price";
-
-      priceElement.textContent =
-        price.toLocaleString("ru-RU") +
-        " ₽";
-
-      const buy =
-        document.createElement("button");
-
-      buy.type = "button";
-
-      buy.className =
-        "buy";
-
-      buy.textContent =
-        "Купить";
-
-      buy.addEventListener(
+      buyButton.addEventListener(
         "click",
         () => {
           openOrder(
@@ -1401,28 +1431,18 @@ function showCategory(category, button) {
         }
       );
 
-      bottom.appendChild(
-        priceElement
+      products.appendChild(
+        card
       );
-
-      bottom.appendChild(
-        buy
-      );
-
-      card.appendChild(icon);
-      card.appendChild(productName);
-      card.appendChild(description);
-      card.appendChild(bottom);
-
-      products.appendChild(card);
 
     }
   );
 
 }
 
+
 /* ======================================================
-   OPEN ORDER
+   ОТКРЫТИЕ ЗАКАЗА
 ====================================================== */
 
 function openOrder(
@@ -1442,69 +1462,81 @@ function openOrder(
       .toString()
       .slice(-8);
 
-  document.getElementById(
-    "orderNumber"
-  ).textContent =
+
+  document
+    .getElementById("orderNumber")
+    .textContent =
     selectedOrder;
 
-  document.getElementById(
-    "paymentOrderNumber"
-  ).textContent =
+
+  document
+    .getElementById("paymentOrderNumber")
+    .textContent =
     selectedOrder;
 
-  document.getElementById(
-    "orderProduct"
-  ).textContent =
+
+  document
+    .getElementById("orderProduct")
+    .textContent =
     product;
 
-  document.getElementById(
-    "orderPrice"
-  ).textContent =
+
+  document
+    .getElementById("orderPrice")
+    .textContent =
     price.toLocaleString(
       "ru-RU"
     ) + " ₽";
 
-  document.getElementById(
-    "status"
-  ).textContent = "";
 
-  document.getElementById(
-    "username"
-  ).value = "";
+  document
+    .getElementById("status")
+    .textContent = "";
 
-  document.getElementById(
-    "receipt"
-  ).value = "";
 
-  document.getElementById(
-    "selectedFile"
-  ).textContent =
+  document
+    .getElementById("username")
+    .value = "";
+
+
+  document
+    .getElementById("receipt")
+    .value = "";
+
+
+  document
+    .getElementById("selectedFile")
+    .textContent =
     "Файл не выбран";
 
-  document.getElementById(
-    "sendButton"
-  ).disabled = false;
 
-  document.getElementById(
-    "modal"
-  ).classList.add("show");
+  document
+    .getElementById("sendButton")
+    .disabled = false;
+
+
+  document
+    .getElementById("modal")
+    .classList.add("show");
 
 }
 
+
 /* ======================================================
-   CLOSE
+   ЗАКРЫТИЕ
 ====================================================== */
 
 function closeModal() {
 
-  document.getElementById(
-    "modal"
-  ).classList.remove("show");
+  document
+    .getElementById("modal")
+    .classList.remove("show");
 
 }
 
+
 /* ======================================================
-   COPY ORDER
+   КОПИРОВАНИЕ
 ====================================================== */
 
 async function copyOrderNumber() {
@@ -1520,16 +1552,16 @@ async function copyOrderNumber() {
         selectedOrder
       );
 
-    document.getElementById(
-      "status"
-    ).textContent =
+    document
+      .getElementById("status")
+      .textContent =
       "✅ Номер заказа скопирован.";
 
   } catch {
 
-    document.getElementById(
-      "status"
-    ).textContent =
+    document
+      .getElementById("status")
+      .textContent =
       "Номер заказа: " +
       selectedOrder;
 
@@ -1537,54 +1569,58 @@ async function copyOrderNumber() {
 
 }
 
+
 /* ======================================================
-   FILE
+   ФАЙЛ
 ====================================================== */
 
 function fileSelected() {
 
   const file =
-    document.getElementById(
-      "receipt"
-    ).files[0];
+    document
+      .getElementById("receipt")
+      .files[0];
 
-  document.getElementById(
-    "selectedFile"
-  ).textContent =
+  document
+    .getElementById("selectedFile")
+    .textContent =
     file
       ? file.name
       : "Файл не выбран";
 
 }
 
+
 /* ======================================================
-   SEND ORDER
+   ОТПРАВКА
 ====================================================== */
 
 async function sendOrder() {
 
   const file =
-    document.getElementById(
-      "receipt"
-    ).files[0];
+    document
+      .getElementById("receipt")
+      .files[0];
+
 
   const usernameInput =
-    document.getElementById(
-      "username"
-    );
+    document
+      .getElementById("username");
+
 
   const status =
-    document.getElementById(
-      "status"
-    );
+    document
+      .getElementById("status");
+
 
   const sendButton =
-    document.getElementById(
-      "sendButton"
-    );
+    document
+      .getElementById("sendButton");
+
 
   let username =
     usernameInput.value.trim();
+
 
   if (!username) {
 
@@ -1594,12 +1630,15 @@ async function sendOrder() {
     usernameInput.focus();
 
     return;
+
   }
+
 
   if (!username.startsWith("@")) {
     username =
       "@" + username;
   }
+
 
   if (!file) {
 
@@ -1607,59 +1646,73 @@ async function sendOrder() {
       "❗️ Прикрепите скриншот оплаты.";
 
     return;
+
   }
 
-  if (!selectedProduct ||
-      !selectedPrice ||
-      !selectedOrder) {
+
+  if (
+    !selectedOrder ||
+    !selectedProduct ||
+    !selectedPrice
+  ) {
 
     status.textContent =
-      "❌ Не удалось сформировать заказ.";
+      "❌ Не удалось определить заказ.";
 
     return;
+
   }
+
 
   status.textContent =
     "⏳ Отправляем заказ...";
 
+
   sendButton.disabled =
     true;
 
+
+  const formData =
+    new FormData();
+
+
+  formData.append(
+    "orderNumber",
+    selectedOrder
+  );
+
+
+  formData.append(
+    "product",
+    selectedProduct
+  );
+
+
+  formData.append(
+    "quantity",
+    "1"
+  );
+
+
+  formData.append(
+    "price",
+    String(selectedPrice)
+  );
+
+
+  formData.append(
+    "username",
+    username
+  );
+
+
+  formData.append(
+    "receipt",
+    file
+  );
+
+
   try {
-
-    const formData =
-      new FormData();
-
-    formData.append(
-      "orderNumber",
-      selectedOrder
-    );
-
-    formData.append(
-      "product",
-      selectedProduct
-    );
-
-    formData.append(
-      "quantity",
-      "1"
-    );
-
-    formData.append(
-      "price",
-      String(selectedPrice)
-    );
-
-    formData.append(
-      "username",
-      username
-    );
-
-    formData.append(
-      "receipt",
-      file,
-      file.name
-    );
 
     const response =
       await fetch(
@@ -1670,31 +1723,40 @@ async function sendOrder() {
         }
       );
 
+
     let result;
 
     try {
+
       result =
         await response.json();
+
     } catch {
+
       throw new Error(
-        "Сервер вернул некорректный ответ"
+        "Сервер вернул неправильный ответ"
       );
+
     }
 
-    if (!response.ok ||
-        !result.ok) {
+
+    if (!response.ok || !result.ok) {
 
       throw new Error(
         result.error ||
         "Ошибка сервера"
       );
+
     }
+
 
     status.textContent =
       "✅ Заказ отправлен!";
 
+
     sendButton.disabled =
       true;
+
 
   } catch (error) {
 
@@ -1703,17 +1765,22 @@ async function sendOrder() {
       error
     );
 
+
     status.textContent =
-      "❌ Не удалось отправить заказ.";
+      "❌ Не удалось отправить заказ: " +
+      error.message;
+
 
     sendButton.disabled =
       false;
+
   }
 
 }
 
+
 /* ======================================================
-   START
+   ЗАПУСК
 ====================================================== */
 
 showCategory(
