@@ -1255,6 +1255,9 @@ const telegramUser =
 const chatId =
   telegramUser?.id || "";
 
+  const telegramInitData =
+  window.Telegram?.WebApp?.initData || "";
+
   formData.append(
     "orderNumber",
     selectedOrder
@@ -1285,11 +1288,15 @@ const chatId =
 );
 
 if (chatId) {
-  formData.append(
-    "chat_id",
-    chatId
-  );
-}
+ formData.append(
+  "chat_id",
+  chatId
+);
+
+formData.append(
+  "telegram_init_data",
+  telegramInitData
+);
 
 formData.append(
   "receipt",
