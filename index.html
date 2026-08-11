@@ -1247,8 +1247,13 @@ async function sendOrder() {
 
 
   const formData =
-    new FormData();
+  new FormData();
 
+const telegramUser =
+  window.Telegram?.WebApp?.initDataUnsafe?.user;
+
+const chatId =
+  telegramUser?.id || "";
 
   formData.append(
     "orderNumber",
