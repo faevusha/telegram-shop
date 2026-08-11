@@ -1284,10 +1284,10 @@ const chatId =
   username
 );
 
-if (tg?.initDataUnsafe?.user?.id) {
+if (chatId) {
   formData.append(
     "chat_id",
-    tg.initDataUnsafe.user.id
+    chatId
   );
 }
 
