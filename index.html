@@ -677,7 +677,7 @@
         class="category"
         onclick="showCategory('world', this)"
       >
-        🌎 Коды мира
+         🌎 Коды мира
       </button>
 
     </div>
@@ -1272,16 +1272,22 @@ async function sendOrder() {
   );
 
 
-  formData.append(
-    "username",
-    username
-  );
+ formData.append(
+  "username",
+  username
+);
 
-
+if (tg?.initDataUnsafe?.user?.id) {
   formData.append(
-    "receipt",
-    file
+    "chat_id",
+    tg.initDataUnsafe.user.id
   );
+}
+
+formData.append(
+  "receipt",
+  file
+);
 
 
   try {
