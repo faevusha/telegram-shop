@@ -1255,8 +1255,19 @@ const telegramUser =
 const chatId =
   telegramUser?.id || "";
 
+  alert(
+  "Telegram user: " +
+  (telegramUser ? "НАЙДЕН" : "НЕ НАЙДЕН") +
+  "\nChat ID: " +
+  (chatId || "НЕТ")
+);
+
   const telegramInitData =
   window.Telegram?.WebApp?.initData || "";
+
+  onsole.log("TG INIT DATA:", telegramInitData);
+console.log("TG USER:", telegramUser);
+console.log("TG CHAT ID:", chatId);
 
   formData.append(
     "orderNumber",
