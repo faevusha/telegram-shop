@@ -1239,10 +1239,10 @@ async function sendOrder() {
     new FormData();
 
   const telegramUser =
-    window.Telegram?.WebApp?.initDataUnsafe?.user;
+  tg?.initDataUnsafe?.user || null;
 
-  const chatId =
-    telegramUser?.id || "";
+const chatId =
+  telegramUser?.id || "";
 
   const telegramInitData =
     window.Telegram?.WebApp?.initData || "";
