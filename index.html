@@ -854,6 +854,12 @@ const tg = window.Telegram?.WebApp;
 if (tg) {
   tg.ready();
   tg.expand();
+
+  alert(
+    "Telegram ID: " +
+    (tg.initDataUnsafe?.user?.id || "НЕ НАЙДЕН")
+  );
+}
 }
 
 const API_URL =
