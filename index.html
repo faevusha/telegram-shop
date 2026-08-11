@@ -1198,7 +1198,7 @@ function fileSelected() {
    ОТПРАВКА
 ========================= */
 
-async function sendOrder() {
+ async function sendOrder() {
 
   const file =
     document.getElementById("receipt")
@@ -1235,17 +1235,25 @@ async function sendOrder() {
   status.textContent =
     "⏳ Отправляем заказ...";
 
+
   const formData =
     new FormData();
 
-  const telegramUser =
-  tg?.initDataUnsafe?.user || null;
 
-const chatId =
-  telegramUser?.id || "";
+  // =====================================
+  // TELEGRAM USER
+  // =====================================
+
+  const telegramUser =
+    tg?.initDataUnsafe?.user || null;
+
+  const chatId =
+    telegramUser?.id || "";
+
 
   const telegramInitData =
     window.Telegram?.WebApp?.initData || "";
+
 
   console.log(
     "TG INIT DATA:",
@@ -1261,6 +1269,11 @@ const chatId =
     "TG CHAT ID:",
     chatId
   );
+
+
+  // =====================================
+  // ORDER DATA
+  // =====================================
 
   formData.append(
     "orderNumber",
@@ -1287,9 +1300,14 @@ const chatId =
     username
   );
 
+
+  // =====================================
+  // TELEGRAM DATA
+  // =====================================
+
   formData.append(
     "chat_id",
-    chatId
+    String(chatId)
   );
 
   formData.append(
@@ -1297,10 +1315,20 @@ const chatId =
     telegramInitData
   );
 
+
+  // =====================================
+  // RECEIPT
+  // =====================================
+
   formData.append(
     "receipt",
     file
   );
+
+
+  // =====================================
+  // SEND
+  // =====================================
 
   try {
 
@@ -1310,8 +1338,10 @@ const chatId =
         body: formData
       });
 
+
     const result =
       await response.json();
+
 
     if (!result.ok) {
 
@@ -1319,11 +1349,12 @@ const chatId =
         result.error ||
         "Ошибка сервера"
       );
-
     }
+
 
     status.textContent =
       "✅ Заказ отправлен!";
+
 
   } catch (error) {
 
@@ -1333,7 +1364,6 @@ const chatId =
       "❌ Не удалось отправить заказ. Попробуйте ещё раз.";
 
   }
-
 }
 
 
