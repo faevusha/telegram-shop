@@ -1255,13 +1255,6 @@ const telegramUser =
 const chatId =
   telegramUser?.id || "";
 
-  alert(
-  "Telegram user: " +
-  (telegramUser ? "НАЙДЕН" : "НЕ НАЙДЕН") +
-  "\nChat ID: " +
-  (chatId || "НЕТ")
-);
-
   const telegramInitData =
   window.Telegram?.WebApp?.initData || "";
 
