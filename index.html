@@ -1208,105 +1208,97 @@ async function sendOrder() {
   const status =
     document.getElementById("status");
 
-
   let username =
     usernameInput.value.trim();
 
-
   if (!username) {
-
     status.textContent =
       "❗️ Укажите username.";
 
     usernameInput.focus();
-
     return;
-
   }
-
 
   if (!username.startsWith("@")) {
-
     username = "@" + username;
-
   }
 
-
   if (!file) {
-
     status.textContent =
       "❗️ Прикрепите скриншот оплаты.";
 
     return;
-
   }
-
 
   status.textContent =
     "⏳ Отправляем заказ...";
 
-
   const formData =
-  new FormData();
+    new FormData();
 
-const telegramUser =
-  window.Telegram?.WebApp?.initDataUnsafe?.user;
+  const telegramUser =
+    window.Telegram?.WebApp?.initDataUnsafe?.user;
 
-const chatId =
-  telegramUser?.id || "";
+  const chatId =
+    telegramUser?.id || "";
 
   const telegramInitData =
-  window.Telegram?.WebApp?.initData || "";
+    window.Telegram?.WebApp?.initData || "";
 
-  onsole.log("TG INIT DATA:", telegramInitData);
-console.log("TG USER:", telegramUser);
-console.log("TG CHAT ID:", chatId);
+  console.log(
+    "TG INIT DATA:",
+    telegramInitData
+  );
+
+  console.log(
+    "TG USER:",
+    telegramUser
+  );
+
+  console.log(
+    "TG CHAT ID:",
+    chatId
+  );
 
   formData.append(
     "orderNumber",
     selectedOrder
   );
 
-
   formData.append(
     "product",
     selectedProduct
   );
-
 
   formData.append(
     "quantity",
     selectedProduct
   );
 
-
   formData.append(
     "price",
     selectedPrice
   );
 
+  formData.append(
+    "username",
+    username
+  );
 
- formData.append(
-  "username",
-  username
-);
+  formData.append(
+    "chat_id",
+    chatId
+  );
 
-if (chatId) {
- formData.append(
-  "chat_id",
-  chatId
-);
+  formData.append(
+    "telegram_init_data",
+    telegramInitData
+  );
 
-formData.append(
-  "telegram_init_data",
-  telegramInitData
-);
-
-formData.append(
-  "receipt",
-  file
-);
-
+  formData.append(
+    "receipt",
+    file
+  );
 
   try {
 
@@ -1316,10 +1308,8 @@ formData.append(
         body: formData
       });
 
-
     const result =
       await response.json();
-
 
     if (!result.ok) {
 
@@ -1330,10 +1320,8 @@ formData.append(
 
     }
 
-
     status.textContent =
       "✅ Заказ отправлен!";
-
 
   } catch (error) {
 
