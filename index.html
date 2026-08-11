@@ -4,15 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
   <title>faevu shop</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -28,16 +32,16 @@
     }
 
     button {
-      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
     }
 
     .container {
-      width: min(1100px, calc(100% - 20px));
+      width: min(1100px, calc(100% - 32px));
       margin: auto;
     }
 
     /* =========================
-       HOME
+       ГЛАВНАЯ
     ========================= */
 
     .home {
@@ -45,67 +49,72 @@
     }
 
     .hero {
-      min-height: 75vh;
+      min-height: 82vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 0;
+      padding: 60px 0 40px;
     }
 
     .hero-logo {
-      font-size: clamp(38px, 10vw, 64px);
+      font-size: clamp(36px, 9vw, 64px);
       font-weight: 900;
       letter-spacing: -2px;
     }
 
     .hero-subtitle {
       max-width: 600px;
-      margin-top: 15px;
+      margin-top: 16px;
       color: #858590;
+      font-size: 16px;
       line-height: 1.6;
     }
 
     .main-buy {
-      margin-top: 30px;
+      margin-top: 34px;
       border: 0;
       background: #fff;
       color: #09090b;
-      border-radius: 16px;
-      padding: 16px 28px;
+      border-radius: 17px;
+      padding: 17px 30px;
+      font-size: 16px;
       font-weight: 800;
-      cursor: pointer;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .main-buy:hover {
+      transform: translateY(-2px);
     }
 
     .home-links {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 12px;
       width: min(520px, 100%);
-      margin-top: 14px;
+      margin-top: 16px;
     }
 
     .home-link {
-      display: block;
       border: 1px solid #25252d;
       background: #111116;
-      color: #fff;
-      border-radius: 15px;
-      padding: 15px;
+      color: white;
+      border-radius: 16px;
+      padding: 16px;
       text-decoration: none;
       font-weight: 700;
     }
 
     .advantages {
-      padding: 50px 0 80px;
+      padding: 70px 0 100px;
     }
 
     .advantages-title {
       text-align: center;
-      font-size: 27px;
+      font-size: 28px;
       font-weight: 900;
-      margin-bottom: 25px;
+      margin-bottom: 28px;
     }
 
     .advantages-grid {
@@ -118,28 +127,29 @@
       background: #111116;
       border: 1px solid #222229;
       border-radius: 20px;
-      padding: 22px;
+      padding: 24px;
+      min-height: 190px;
     }
 
     .advantage-icon {
       font-size: 30px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .advantage-title {
-      font-weight: 800;
       font-size: 18px;
+      font-weight: 800;
     }
 
     .advantage-text {
       color: #777783;
-      margin-top: 7px;
-      line-height: 1.5;
       font-size: 14px;
+      line-height: 1.5;
+      margin-top: 8px;
     }
 
     /* =========================
-       SHOP
+       МАГАЗИН
     ========================= */
 
     .shop {
@@ -152,22 +162,11 @@
     }
 
     .shop-header {
-      padding: 25px 0 15px;
+      padding: 30px 0 10px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-    }
-
-    .logo {
-      font-size: 28px;
-      font-weight: 900;
-    }
-
-    .subtitle {
-      color: #858590;
-      margin-top: 5px;
-      font-size: 14px;
+      justify-content: space-between;
+      gap: 15px;
     }
 
     .back-home {
@@ -176,14 +175,24 @@
       color: #aaaab5;
       border-radius: 12px;
       padding: 10px 14px;
-      cursor: pointer;
+    }
+
+    .logo {
+      font-size: 29px;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      color: #858590;
+      margin-top: 6px;
+      font-size: 14px;
     }
 
     .categories {
       display: flex;
-      gap: 9px;
+      gap: 10px;
       overflow-x: auto;
-      padding: 10px 0 20px;
+      padding: 12px 0 22px;
       scrollbar-width: none;
     }
 
@@ -192,55 +201,54 @@
     }
 
     .category {
-      flex-shrink: 0;
       border: 1px solid #25252d;
       background: #111116;
       color: #aaaab5;
-      border-radius: 13px;
-      padding: 11px 15px;
-      cursor: pointer;
+      border-radius: 14px;
+      padding: 12px 17px;
+      white-space: nowrap;
     }
 
     .category.active {
-      background: #fff;
+      background: white;
       color: #09090b;
-      border-color: #fff;
+      border-color: white;
       font-weight: 700;
     }
 
     .section-title {
       font-size: 22px;
-      font-weight: 900;
-      margin: 5px 0 15px;
+      font-weight: 800;
+      margin: 8px 0 16px;
     }
 
     .products {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 13px;
+      gap: 14px;
     }
 
     .product {
       background: #111116;
       border: 1px solid #222229;
       border-radius: 18px;
-      padding: 17px;
+      padding: 18px;
     }
 
     .product-icon {
       width: 44px;
       height: 44px;
+      border-radius: 13px;
+      background: #1b1b22;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #1b1b22;
-      border-radius: 13px;
       font-size: 22px;
-      margin-bottom: 13px;
+      margin-bottom: 14px;
     }
 
     .product-name {
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .product-description {
@@ -251,47 +259,40 @@
 
     .product-bottom {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      margin-top: 17px;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 18px;
     }
 
     .price {
-      font-weight: 900;
+      font-weight: 800;
     }
 
     .buy {
       border: 0;
-      background: #fff;
+      background: white;
       color: #09090b;
       border-radius: 11px;
       padding: 10px 14px;
-      font-weight: 800;
-      cursor: pointer;
-      touch-action: manipulation;
-    }
-
-    .buy:active,
-    .send:active,
-    .main-buy:active {
-      transform: scale(.97);
+      font-weight: 700;
     }
 
     /* =========================
-       MODAL
+       МОДАЛЬНОЕ ОКНО
     ========================= */
 
     .modal {
       position: fixed;
       inset: 0;
-      z-index: 100;
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 15px;
-      background: rgba(0, 0, 0, .78);
+      padding: 18px;
+      background: rgba(0, 0, 0, .75);
       backdrop-filter: blur(8px);
+      z-index: 10;
+      overflow-y: auto;
     }
 
     .modal.show {
@@ -299,38 +300,36 @@
     }
 
     .modal-content {
-      position: relative;
       width: min(460px, 100%);
-      max-height: calc(100vh - 30px);
+      max-height: calc(100vh - 36px);
       overflow-y: auto;
       background: #111116;
       border: 1px solid #292931;
       border-radius: 22px;
-      padding: 22px;
+      padding: 23px;
+      position: relative;
     }
 
     .close {
       position: absolute;
-      right: 14px;
-      top: 10px;
+      top: 12px;
+      right: 16px;
+      background: none;
       border: 0;
-      background: transparent;
       color: #888894;
-      font-size: 28px;
-      cursor: pointer;
+      font-size: 26px;
     }
 
     .order-title {
       font-size: 21px;
-      font-weight: 900;
-      margin-bottom: 17px;
-      padding-right: 30px;
+      font-weight: 800;
+      margin-bottom: 18px;
     }
 
     .order-box {
       background: #19191f;
       border-radius: 15px;
-      padding: 14px;
+      padding: 15px;
     }
 
     .order-row {
@@ -341,39 +340,40 @@
       font-size: 14px;
     }
 
-    .order-row span {
+    .order-row span:first-child {
       color: #858591;
     }
 
     .payment {
-      margin-top: 14px;
-      padding: 14px;
+      margin-top: 15px;
+      padding: 15px;
       border: 1px dashed #3b3b45;
       border-radius: 15px;
     }
 
     .payment-title {
-      font-weight: 800;
-      margin-bottom: 9px;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
 
     .payment-text {
       color: #9a9aa5;
       font-size: 13px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     .payment-details {
-      margin-top: 11px;
+      margin-top: 12px;
       padding: 12px;
       background: #19191f;
       border-radius: 12px;
+      color: white;
       line-height: 1.7;
     }
 
     .payment-warning {
-      margin-top: 11px;
-      padding: 11px;
+      margin-top: 13px;
+      padding: 12px;
       background: rgba(255, 180, 0, .08);
       border: 1px solid rgba(255, 180, 0, .2);
       border-radius: 12px;
@@ -383,25 +383,24 @@
     }
 
     .order-copy {
+      margin-top: 10px;
       width: 100%;
-      margin-top: 9px;
-      padding: 9px;
       border: 1px solid #30303a;
       background: #19191f;
-      color: #fff;
+      color: white;
       border-radius: 11px;
-      cursor: pointer;
+      padding: 9px;
     }
 
     .username-box {
-      margin-top: 14px;
+      margin-top: 15px;
     }
 
     .username-box label {
       display: block;
+      margin-bottom: 8px;
       color: #9a9aa5;
       font-size: 13px;
-      margin-bottom: 7px;
     }
 
     .username-box input {
@@ -409,21 +408,25 @@
       padding: 13px;
       border: 1px solid #30303a;
       background: #19191f;
-      color: #fff;
+      color: white;
       border-radius: 13px;
       outline: none;
+      font-size: 14px;
+    }
+
+    .username-box input:focus {
+      border-color: #666674;
     }
 
     .receipt-label {
       display: block;
-      margin-top: 14px;
-      padding: 14px;
-      border: 1px dashed #40404b;
+      margin-top: 15px;
       background: #1a1a21;
+      border: 1px dashed #40404b;
       border-radius: 14px;
+      padding: 14px;
       text-align: center;
       color: #b1b1bb;
-      cursor: pointer;
     }
 
     .receipt-label input {
@@ -431,24 +434,22 @@
     }
 
     .selected-file {
-      margin-top: 7px;
-      text-align: center;
+      margin-top: 8px;
       color: #8f8f9a;
       font-size: 12px;
+      text-align: center;
       word-break: break-word;
     }
 
     .send {
       width: 100%;
-      margin-top: 14px;
-      padding: 13px;
+      margin-top: 15px;
       border: 0;
-      background: #fff;
+      background: white;
       color: #09090b;
       border-radius: 13px;
-      font-weight: 900;
-      cursor: pointer;
-      touch-action: manipulation;
+      padding: 13px;
+      font-weight: 800;
     }
 
     .send:disabled {
@@ -457,11 +458,11 @@
     }
 
     .status {
-      min-height: 20px;
-      margin-top: 11px;
+      margin-top: 12px;
       text-align: center;
-      color: #9999a4;
       font-size: 13px;
+      color: #9999a4;
+      line-height: 1.5;
     }
 
     @media (max-width: 700px) {
@@ -475,12 +476,20 @@
     }
 
     @media (max-width: 470px) {
+      .container {
+        width: calc(100% - 20px);
+      }
+
       .products {
         grid-template-columns: 1fr;
       }
 
       .home-links {
         grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 75vh;
       }
     }
   </style>
@@ -489,7 +498,6 @@
 <body>
 
 <section class="home" id="home">
-
   <div class="container">
 
     <div class="hero">
@@ -499,15 +507,11 @@
       </div>
 
       <div class="hero-subtitle">
-        Лучший магазин с минимальными ценами.
+        Лучший магазин с минимальными ценами.<br>
         Robux, Stars.
       </div>
 
-      <button
-        type="button"
-        class="main-buy"
-        id="mainBuy"
-      >
+      <button class="main-buy" onclick="openShop()">
         🛒 Совершить покупку
       </button>
 
@@ -531,6 +535,10 @@
 
       </div>
 
+      <div class="scroll-hint">
+        ↓ Листайте ниже
+      </div>
+
     </div>
 
     <div class="advantages">
@@ -543,9 +551,7 @@
 
         <div class="advantage">
           <div class="advantage-icon">🚀</div>
-          <div class="advantage-title">
-            Быстрая доставка
-          </div>
+          <div class="advantage-title">Быстрая доставка</div>
           <div class="advantage-text">
             Ваш заказ обрабатывается максимально быстро
             после подтверждения оплаты.
@@ -554,23 +560,19 @@
 
         <div class="advantage">
           <div class="advantage-icon">💰</div>
-          <div class="advantage-title">
-            Низкие цены
-          </div>
+          <div class="advantage-title">Низкие цены</div>
           <div class="advantage-text">
-            Выгодные цены на Telegram Stars,
-            Premium и товары Roblox.
+            Выгодные цены на Telegram Stars, Premium
+            и товары Roblox.
           </div>
         </div>
 
         <div class="advantage">
           <div class="advantage-icon">🛡️</div>
-          <div class="advantage-title">
-            Надёжный сервис
-          </div>
+          <div class="advantage-title">Надёжный сервис</div>
           <div class="advantage-text">
-            По любым вопросам можно обратиться
-            в поддержку.
+            Если возникнут вопросы с заказом,
+            вы всегда сможете обратиться в поддержку.
           </div>
         </div>
 
@@ -579,7 +581,6 @@
     </div>
 
   </div>
-
 </section>
 
 
@@ -595,9 +596,8 @@
       </div>
 
       <button
-        type="button"
         class="back-home"
-        id="backHome"
+        onclick="openHome()"
       >
         ← Главная
       </button>
@@ -608,41 +608,36 @@
     <div class="categories">
 
       <button
-        type="button"
         class="category active"
-        data-category="stars"
+        onclick="showCategory('stars', this)"
       >
         ⭐️ Stars
       </button>
 
       <button
-        type="button"
         class="category"
-        data-category="premium"
+        onclick="showCategory('premium', this)"
       >
         💎 Premium
       </button>
 
       <button
-        type="button"
         class="category"
-        data-category="gamepass"
+        onclick="showCategory('gamepass', this)"
       >
         🎮 Game Pass
       </button>
 
       <button
-        type="button"
         class="category"
-        data-category="rf"
+        onclick="showCategory('rf', this)"
       >
         🇷🇺 Коды РФ
       </button>
 
       <button
-        type="button"
         class="category"
-        data-category="world"
+        onclick="showCategory('world', this)"
       >
         🌎 Коды мира
       </button>
@@ -656,7 +651,6 @@
     >
       Telegram Stars
     </div>
-
 
     <div
       class="products"
@@ -673,9 +667,8 @@
   <div class="modal-content">
 
     <button
-      type="button"
       class="close"
-      id="closeModal"
+      onclick="closeModal()"
     >
       ×
     </button>
@@ -703,9 +696,8 @@
       </div>
 
       <button
-        type="button"
         class="order-copy"
-        id="copyOrder"
+        onclick="copyOrderNumber()"
       >
         📋 Скопировать номер заказа
       </button>
@@ -741,7 +733,7 @@
 
         Обязательно укажите
         <strong id="paymentOrderNumber"></strong>
-        в сообщении к переводу.
+        <strong>в сообщении к переводу.</strong>
 
         <br><br>
 
@@ -777,6 +769,7 @@
         type="file"
         id="receipt"
         accept="image/*"
+        onchange="fileSelected()"
       >
 
     </label>
@@ -791,9 +784,9 @@
 
 
     <button
-      type="button"
       class="send"
       id="sendButton"
+      onclick="sendOrder()"
     >
       Отправить заказ
     </button>
@@ -811,29 +804,17 @@
 
 <script>
 
-/* ======================================================
-   TELEGRAM MINI APP
-====================================================== */
-
-const tg = window.Telegram?.WebApp || null;
-
-if (tg) {
-  tg.ready();
-  tg.expand();
-}
-
-
-/* ======================================================
-   WORKER
-====================================================== */
+/* =====================================================
+   НАСТРОЙКИ
+===================================================== */
 
 const API_URL =
   "https://telegram-shop-api.dvpalov.workers.dev/order";
 
 
-/* ======================================================
+/* =====================================================
    ТОВАРЫ
-====================================================== */
+===================================================== */
 
 const data = {
 
@@ -923,414 +904,309 @@ const data = {
 };
 
 
-/* ======================================================
+/* =====================================================
    СОСТОЯНИЕ
-====================================================== */
+===================================================== */
 
-let selectedProduct = "";
-let selectedPrice = 0;
-let selectedOrder = "";
-
-
-/* ======================================================
-   ЭЛЕМЕНТЫ
-====================================================== */
-
-const home =
-  document.getElementById("home");
-
-const shop =
-  document.getElementById("shop");
-
-const products =
-  document.getElementById("products");
-
-const modal =
-  document.getElementById("modal");
-
-const username =
-  document.getElementById("username");
-
-const receipt =
-  document.getElementById("receipt");
-
-const status =
-  document.getElementById("status");
-
-const selectedFile =
-  document.getElementById("selectedFile");
-
-const sendButton =
-  document.getElementById("sendButton");
+let selectedProduct = null;
+let selectedPrice = null;
+let selectedOrder = null;
 
 
-/* ======================================================
-   ГЛАВНАЯ → МАГАЗИН
-====================================================== */
+/* =====================================================
+   ГЛАВНАЯ / МАГАЗИН
+===================================================== */
 
-document
-  .getElementById("mainBuy")
-  .addEventListener("click", function () {
+function openShop() {
 
-    home.style.display = "none";
-    shop.classList.add("show");
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  });
-
-
-/* ======================================================
-   МАГАЗИН → ГЛАВНАЯ
-====================================================== */
-
-document
-  .getElementById("backHome")
-  .addEventListener("click", function () {
-
-    shop.classList.remove("show");
-    home.style.display = "block";
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  });
-
-
-/* ======================================================
-   КАТЕГОРИИ
-====================================================== */
-
-document
-  .querySelectorAll(".category")
-  .forEach(function (button) {
-
-    button.addEventListener("click", function () {
-
-      document
-        .querySelectorAll(".category")
-        .forEach(function (item) {
-          item.classList.remove("active");
-        });
-
-      button.classList.add("active");
-
-      showCategory(
-        button.dataset.category
-      );
-
-    });
-
-  });
-
-
-function showCategory(category) {
-
-  const categoryData =
-    data[category];
-
-  if (!categoryData) {
-    return;
-  }
+  document.getElementById("home").style.display = "none";
 
   document
-    .getElementById("sectionTitle")
-    .textContent =
-    categoryData.title;
+    .getElementById("shop")
+    .classList.add("show");
 
-  products.innerHTML = "";
-
-  categoryData.products.forEach(
-    function (product) {
-
-      const name = product[0];
-      const price = product[1];
-
-      const card =
-        document.createElement("div");
-
-      card.className = "product";
-
-      const icon =
-        document.createElement("div");
-
-      icon.className =
-        "product-icon";
-
-      icon.textContent =
-        categoryData.icon;
-
-
-      const nameElement =
-        document.createElement("div");
-
-      nameElement.className =
-        "product-name";
-
-      nameElement.textContent =
-        name;
-
-
-      const description =
-        document.createElement("div");
-
-      description.className =
-        "product-description";
-
-      description.textContent =
-        "Обработка заказа";
-
-
-      const bottom =
-        document.createElement("div");
-
-      bottom.className =
-        "product-bottom";
-
-
-      const priceElement =
-        document.createElement("div");
-
-      priceElement.className =
-        "price";
-
-      priceElement.textContent =
-        price.toLocaleString("ru-RU") +
-        " ₽";
-
-
-      const buyButton =
-        document.createElement("button");
-
-      buyButton.type = "button";
-      buyButton.className = "buy";
-      buyButton.textContent = "Купить";
-
-
-      buyButton.addEventListener(
-        "click",
-        function () {
-
-          openOrder(
-            name,
-            price
-          );
-
-        }
-      );
-
-
-      bottom.appendChild(
-        priceElement
-      );
-
-      bottom.appendChild(
-        buyButton
-      );
-
-
-      card.appendChild(icon);
-      card.appendChild(nameElement);
-      card.appendChild(description);
-      card.appendChild(bottom);
-
-      products.appendChild(card);
-
-    }
-  );
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 
 }
 
 
-/* ======================================================
-   СОЗДАНИЕ ЗАКАЗА
-====================================================== */
+function openHome() {
 
-function openOrder(
-  product,
-  price
-) {
+  document
+    .getElementById("shop")
+    .classList.remove("show");
 
-  selectedProduct =
-    product;
+  document.getElementById("home").style.display = "block";
 
-  selectedPrice =
-    price;
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* =====================================================
+   КАТЕГОРИИ
+===================================================== */
+
+function showCategory(category, button) {
+
+  document
+    .querySelectorAll(".category")
+    .forEach(item => {
+      item.classList.remove("active");
+    });
+
+  button.classList.add("active");
+
+  const categoryData = data[category];
+
+  document
+    .getElementById("sectionTitle")
+    .textContent = categoryData.title;
+
+  const products =
+    document.getElementById("products");
+
+  products.innerHTML = "";
+
+  categoryData.products.forEach(product => {
+
+    const name = product[0];
+    const price = product[1];
+
+    const card =
+      document.createElement("div");
+
+    card.className = "product";
+
+    const icon =
+      document.createElement("div");
+
+    icon.className = "product-icon";
+    icon.textContent = categoryData.icon;
+
+    const productName =
+      document.createElement("div");
+
+    productName.className = "product-name";
+    productName.textContent = name;
+
+    const description =
+      document.createElement("div");
+
+    description.className = "product-description";
+    description.textContent = "Обработка заказа";
+
+    const bottom =
+      document.createElement("div");
+
+    bottom.className = "product-bottom";
+
+    const priceElement =
+      document.createElement("div");
+
+    priceElement.className = "price";
+    priceElement.textContent =
+      price.toLocaleString("ru-RU") + " ₽";
+
+    const buyButton =
+      document.createElement("button");
+
+    buyButton.className = "buy";
+    buyButton.textContent = "Купить";
+
+    buyButton.addEventListener("click", () => {
+      openOrder(name, price);
+    });
+
+    bottom.appendChild(priceElement);
+    bottom.appendChild(buyButton);
+
+    card.appendChild(icon);
+    card.appendChild(productName);
+    card.appendChild(description);
+    card.appendChild(bottom);
+
+    products.appendChild(card);
+
+  });
+
+}
+
+
+/* =====================================================
+   ОТКРЫТИЕ ЗАКАЗА
+===================================================== */
+
+function openOrder(product, price) {
+
+  selectedProduct = product;
+  selectedPrice = price;
 
   selectedOrder =
     "DS-" +
-    String(Date.now())
-      .slice(-8);
-
+    String(Date.now()).slice(-8);
 
   document
     .getElementById("orderNumber")
-    .textContent =
-    selectedOrder;
-
+    .textContent = selectedOrder;
 
   document
     .getElementById("paymentOrderNumber")
-    .textContent =
-    selectedOrder;
-
+    .textContent = selectedOrder;
 
   document
     .getElementById("orderProduct")
-    .textContent =
-    selectedProduct;
-
+    .textContent = product;
 
   document
     .getElementById("orderPrice")
     .textContent =
-    selectedPrice.toLocaleString("ru-RU") +
-    " ₽";
+      price.toLocaleString("ru-RU") + " ₽";
 
+  document
+    .getElementById("username")
+    .value = "";
 
-  username.value = "";
+  document
+    .getElementById("receipt")
+    .value = "";
 
-  receipt.value = "";
+  document
+    .getElementById("selectedFile")
+    .textContent = "Файл не выбран";
 
-  selectedFile.textContent =
-    "Файл не выбран";
+  document
+    .getElementById("status")
+    .textContent = "";
 
-  status.textContent =
-    "";
+  document
+    .getElementById("sendButton")
+    .disabled = false;
 
-  sendButton.disabled =
-    false;
-
-
-  modal.classList.add("show");
+  document
+    .getElementById("modal")
+    .classList.add("show");
 
 }
 
 
-/* ======================================================
-   ЗАКРЫТЬ
-====================================================== */
+/* =====================================================
+   ЗАКРЫТИЕ
+===================================================== */
 
-document
-  .getElementById("closeModal")
-  .addEventListener("click", function () {
+function closeModal() {
 
-    modal.classList.remove("show");
+  document
+    .getElementById("modal")
+    .classList.remove("show");
 
-  });
+}
 
 
-modal.addEventListener(
-  "click",
-  function (event) {
+/* =====================================================
+   КОПИРОВАНИЕ
+===================================================== */
 
-    if (event.target === modal) {
-      modal.classList.remove("show");
-    }
+async function copyOrderNumber() {
+
+  if (!selectedOrder) {
+    return;
+  }
+
+  try {
+
+    await navigator.clipboard.writeText(
+      selectedOrder
+    );
+
+    document
+      .getElementById("status")
+      .textContent =
+      "✅ Номер заказа скопирован.";
+
+  } catch {
+
+    document
+      .getElementById("status")
+      .textContent =
+      "Номер заказа: " + selectedOrder;
 
   }
-);
+
+}
 
 
-/* ======================================================
-   КОПИРОВАНИЕ НОМЕРА
-====================================================== */
-
-document
-  .getElementById("copyOrder")
-  .addEventListener(
-    "click",
-    async function () {
-
-      if (!selectedOrder) {
-        return;
-      }
-
-      try {
-
-        await navigator.clipboard
-          .writeText(selectedOrder);
-
-        status.textContent =
-          "✅ Номер заказа скопирован.";
-
-      } catch {
-
-        status.textContent =
-          "Номер заказа: " +
-          selectedOrder;
-
-      }
-
-    }
-  );
-
-
-/* ======================================================
+/* =====================================================
    ФАЙЛ
-====================================================== */
+===================================================== */
 
-receipt.addEventListener(
-  "change",
-  function () {
+function fileSelected() {
 
-    const file =
-      receipt.files[0];
+  const file =
+    document
+      .getElementById("receipt")
+      .files[0];
 
-    selectedFile.textContent =
+  document
+    .getElementById("selectedFile")
+    .textContent =
       file
         ? file.name
         : "Файл не выбран";
 
-  }
-);
+}
 
 
-/* ======================================================
+/* =====================================================
    ОТПРАВКА ЗАКАЗА
-====================================================== */
-
-sendButton.addEventListener(
-  "click",
-  sendOrder
-);
-
+===================================================== */
 
 async function sendOrder() {
 
   const file =
-    receipt.files[0];
+    document
+      .getElementById("receipt")
+      .files[0];
 
-  let userName =
-    username.value.trim();
+  const usernameInput =
+    document.getElementById("username");
+
+  const status =
+    document.getElementById("status");
+
+  const sendButton =
+    document.getElementById("sendButton");
+
+
+  let username =
+    usernameInput.value.trim();
 
 
   /* USERNAME */
 
-  if (!userName) {
+  if (!username) {
 
     status.textContent =
       "❗️ Укажите username.";
 
-    username.focus();
+    usernameInput.focus();
 
     return;
-
   }
 
 
-  if (!userName.startsWith("@")) {
-    userName =
-      "@" + userName;
+  if (!username.startsWith("@")) {
+    username = "@" + username;
   }
 
 
-  /* SCREENSHOT */
+  /* ЧЕК */
 
   if (!file) {
 
@@ -1338,45 +1214,36 @@ async function sendOrder() {
       "❗️ Прикрепите скриншот оплаты.";
 
     return;
-
   }
 
 
-  /* ORDER */
+  /* ПРОВЕРКА ЗАКАЗА */
 
   if (
     !selectedOrder ||
     !selectedProduct ||
-    !selectedPrice
+    selectedPrice === null
   ) {
 
     status.textContent =
-      "❌ Ошибка данных заказа.";
+      "❌ Не удалось создать заказ. Откройте товар ещё раз.";
 
     return;
-
   }
 
-
-  sendButton.disabled =
-    true;
 
   status.textContent =
     "⏳ Отправляем заказ...";
 
+  sendButton.disabled = true;
+
+
+  /* ===================================================
+     FORMDATA
+  =================================================== */
 
   const formData =
     new FormData();
-
-
-  /*
-    ВАЖНО:
-
-    Здесь НЕТ chat_id.
-    НЕТ initDataUnsafe.
-    НЕТ попытки определить
-    Telegram ID пользователя.
-  */
 
 
   formData.append(
@@ -1384,78 +1251,68 @@ async function sendOrder() {
     selectedOrder
   );
 
-
   formData.append(
     "product",
     selectedProduct
   );
 
+  /*
+     Worker получает quantity,
+     поэтому передаём 1.
+  */
 
   formData.append(
     "quantity",
     "1"
   );
 
-
   formData.append(
     "price",
     String(selectedPrice)
   );
 
-
   formData.append(
     "username",
-    userName
+    username
   );
-
 
   formData.append(
     "receipt",
-    file,
-    file.name
+    file
   );
 
+
+  /* ===================================================
+     ЗАПРОС
+  =================================================== */
 
   try {
 
     const response =
-      await fetch(
-        API_URL,
-        {
-          method: "POST",
-          body: formData
-        }
-      );
+      await fetch(API_URL, {
+        method: "POST",
+        body: formData
+      });
 
 
-    const text =
-      await response.text();
-
-
-    let result;
-
-    try {
-
-      result =
-        JSON.parse(text);
-
-    } catch {
+    if (!response.ok) {
 
       throw new Error(
-        "Сервер вернул некорректный ответ."
+        "HTTP " + response.status
       );
 
     }
 
 
-    if (
-      !response.ok ||
-      !result.ok
-    ) {
+    const result =
+      await response.json();
+
+
+    if (!result.ok) {
 
       throw new Error(
         result.error ||
-        "Ошибка сервера."
+        "Worker вернул ошибку."
       );
 
     }
@@ -1464,40 +1321,36 @@ async function sendOrder() {
     status.textContent =
       "✅ Заказ отправлен!";
 
-
-    sendButton.disabled =
-      true;
-
+    /*
+       Оставляем окно открытым,
+       чтобы человек видел номер заказа.
+    */
 
   } catch (error) {
 
     console.error(
-      "ORDER ERROR:",
+      "Ошибка отправки заказа:",
       error
     );
 
-
     status.textContent =
-      "❌ " +
-      (
-        error.message ||
-        "Не удалось отправить заказ."
-      );
+      "❌ Не удалось отправить заказ. Попробуйте ещё раз.";
 
-
-    sendButton.disabled =
-      false;
+    sendButton.disabled = false;
 
   }
 
 }
 
 
-/* ======================================================
+/* =====================================================
    ЗАПУСК
-====================================================== */
+===================================================== */
 
-showCategory("stars");
+showCategory(
+  "stars",
+  document.querySelector(".category")
+);
 
 </script>
 
