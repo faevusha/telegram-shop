@@ -1,1794 +1,3549 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050508">
 
-  <meta charset="UTF-8">
+<title>faevu shop</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<style>
+/* =========================================================
+   RESET
+========================================================= */
 
-  <title>faevu shop</title>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-  <style>
+html{
+    scroll-behavior:smooth;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+body{
+    min-height:100vh;
+    overflow-x:hidden;
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family:
+    font-family:
         -apple-system,
         BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
         "Segoe UI",
+        Arial,
         sans-serif;
 
-      background: #09090b;
-      color: #fff;
-      min-height: 100vh;
+    color:#fff;
+    background:#050508;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+}
+
+a{
+    -webkit-tap-highlight-color:transparent;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    overflow:hidden;
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(255,255,255,.14),
+            transparent 35%
+        ),
+        #050508;
+}
+
+.background-grid{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        );
+
+    background-size:48px 48px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 85%
+        );
+}
+
+.orb{
+    position:absolute;
+    width:420px;
+    height:420px;
+
+    border-radius:50%;
+    filter:blur(100px);
+
+    opacity:.16;
+}
+
+.orb-1{
+    left:-230px;
+    top:10%;
+    background:#aaa1ff;
+}
+
+.orb-2{
+    right:-250px;
+    top:35%;
+    background:#74e8ff;
+}
+
+.orb-3{
+    left:30%;
+    bottom:-350px;
+    background:#d77cff;
+}
+
+
+/* =========================================================
+   COMMON
+========================================================= */
+
+.container{
+    width:min(1120px,calc(100% - 28px));
+    margin:0 auto;
+}
+
+.glass{
+    border:1px solid rgba(255,255,255,.10);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.025)
+        );
+
+    border-radius:26px;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.06),
+        0 25px 80px rgba(0,0,0,.22);
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+}
+
+.shine{
+    background:
+        linear-gradient(
+            100deg,
+            #fff 5%,
+            #b8b8bd 25%,
+            #fff 42%,
+            #77777e 58%,
+            #fff 72%,
+            #c8c8ce 90%
+        );
+
+    background-size:220% auto;
+
+    color:transparent;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    animation:shine 6s linear infinite;
+}
+
+@keyframes shine{
+    to{
+        background-position:220% center;
     }
+}
 
-    button,
-    input {
-      font: inherit;
-    }
 
-    .container {
-      width: min(
-        1100px,
-        calc(100% - 32px)
-      );
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-      margin: auto;
-    }
+.nav{
+    position:sticky;
+    top:10px;
 
-    /* =========================
-       HOME
-    ========================= */
+    z-index:1000;
 
-    .home {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    width:min(1120px,calc(100% - 16px));
 
-    .hero {
-      min-height: 82vh;
+    margin:10px auto 0;
 
-      display: flex;
-      flex-direction: column;
+    min-height:64px;
 
-      align-items: center;
-      justify-content: center;
+    padding:9px 10px;
 
-      text-align: center;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-      padding: 60px 0 40px;
-    }
+    border:1px solid rgba(255,255,255,.11);
 
-    .hero-logo {
-      font-size:
-        clamp(36px, 9vw, 64px);
+    border-radius:23px;
 
-      font-weight: 900;
-      letter-spacing: -2px;
-    }
+    background:rgba(15,15,20,.78);
 
-    .hero-subtitle {
-      max-width: 600px;
+    backdrop-filter:blur(28px);
+    -webkit-backdrop-filter:blur(28px);
 
-      margin-top: 16px;
+    box-shadow:
+        0 18px 60px rgba(0,0,0,.34),
+        inset 0 1px rgba(255,255,255,.08);
 
-      color: #858590;
+    isolation:isolate;
+}
 
-      font-size: 16px;
-      line-height: 1.6;
-    }
+.brand{
+    display:flex;
+    align-items:center;
+    gap:9px;
 
-    .main-buy {
-      margin-top: 34px;
+    color:#fff;
 
-      border: 0;
+    font-size:20px;
+    font-weight:950;
 
-      background: #fff;
-      color: #09090b;
+    letter-spacing:-1.3px;
+}
 
-      border-radius: 17px;
+.brand::before{
+    content:"F";
 
-      padding: 17px 30px;
+    width:34px;
+    height:34px;
 
-      font-size: 16px;
-      font-weight: 800;
+    display:grid;
+    place-items:center;
 
-      cursor: pointer;
+    border-radius:12px;
 
-      transition:
-        transform .2s,
-        opacity .2s;
-    }
+    color:#08080d;
 
-    .main-buy:hover {
-      transform:
-        translateY(-2px);
-    }
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #d5d5da 45%,
+            #a6a6ac
+        );
 
-    .home-links {
-      display: grid;
+    box-shadow:
+        0 0 25px rgba(255,255,255,.13),
+        inset 0 1px rgba(255,255,255,.9);
+}
 
-      grid-template-columns:
-        repeat(2, 1fr);
+.nav-button{
+    min-height:44px;
 
-      gap: 12px;
+    padding:10px 17px;
 
-      width: min(
-        520px,
-        100%
-      );
+    border-radius:15px;
 
-      margin-top: 16px;
-    }
+    border:1px solid rgba(255,255,255,.11);
 
-    .home-link {
-      border:
-        1px solid #25252d;
+    background:rgba(255,255,255,.055);
 
-      background: #111116;
-      color: white;
+    color:#fff;
 
-      border-radius: 16px;
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+}
 
-      padding: 16px;
+.nav-button:hover{
+    transform:translateY(-2px);
 
-      text-decoration: none;
+    background:rgba(255,255,255,.10);
 
-      font-weight: 700;
+    border-color:rgba(255,255,255,.20);
+}
 
-      transition:
-        background .2s,
-        transform .2s;
-    }
+.nav-button:active{
+    transform:scale(.97);
+}
 
-    .home-link:hover {
-      background: #18181f;
 
-      transform:
-        translateY(-2px);
-    }
+/* =========================================================
+   HERO
+========================================================= */
 
-    .scroll-hint {
-      margin-top: 35px;
+.hero{
+    position:relative;
 
-      color: #555560;
+    min-height:calc(100vh - 70px);
 
-      font-size: 13px;
-    }
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    .advantages {
-      padding:
-        70px 0 100px;
-    }
+    text-align:center;
 
-    .advantages-title {
-      text-align: center;
+    padding:90px 0 100px;
+}
 
-      font-size: 28px;
-      font-weight: 900;
+.hero::before{
+    content:"";
 
-      margin-bottom: 28px;
-    }
+    position:absolute;
 
-    .advantages-grid {
-      display: grid;
+    width:540px;
+    height:300px;
 
-      grid-template-columns:
-        repeat(3, 1fr);
+    left:50%;
+    top:27%;
 
-      gap: 14px;
-    }
+    transform:translateX(-50%);
 
-    .advantage {
-      background: #111116;
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,255,255,.10),
+            transparent 68%
+        );
 
-      border:
-        1px solid #222229;
+    filter:blur(25px);
 
-      border-radius: 20px;
+    pointer-events:none;
+}
 
-      padding: 24px;
+.hero-content{
+    position:relative;
+    z-index:2;
+    width:100%;
+}
 
-      min-height: 190px;
-    }
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
 
-    .advantage-icon {
-      font-size: 30px;
+    padding:9px 14px;
 
-      margin-bottom: 20px;
-    }
+    border:1px solid rgba(255,255,255,.11);
 
-    .advantage-title {
-      font-size: 18px;
-      font-weight: 800;
-    }
+    border-radius:999px;
 
-    .advantage-text {
-      color: #777783;
+    background:rgba(255,255,255,.045);
 
-      font-size: 14px;
-      line-height: 1.5;
+    color:#aaaab4;
 
-      margin-top: 8px;
-    }
+    font-size:12px;
+    font-weight:750;
 
-    /* =========================
-       SHOP
-    ========================= */
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.07),
+        0 0 30px rgba(255,255,255,.025);
+}
 
-    .shop {
-      display: none;
+.hero h1{
+    position:relative;
 
-      padding-bottom: 60px;
-    }
+    margin:25px 0 22px;
 
-    .shop.show {
-      display: block;
-    }
+    font-size:
+        clamp(
+            58px,
+            12vw,
+            126px
+        );
 
-    .shop-header {
-      padding:
-        30px 0 10px;
+    line-height:.86;
 
-      display: flex;
+    letter-spacing:-7px;
 
-      align-items: center;
-      justify-content: space-between;
+    font-weight:950;
 
-      gap: 15px;
-    }
+    text-transform:lowercase;
 
-    .back-home {
-      border:
-        1px solid #25252d;
+    text-shadow:
+        0 0 70px rgba(255,255,255,.13),
+        0 8px 50px rgba(0,0,0,.45);
+}
 
-      background: #111116;
-      color: #aaaab5;
+.hero-description{
+    position:relative;
 
-      border-radius: 12px;
+    max-width:650px;
 
-      padding: 10px 14px;
+    margin:0 auto;
 
-      cursor: pointer;
-    }
+    color:#8e8e99;
 
-    .logo {
-      font-size: 29px;
-      font-weight: 800;
-    }
+    font-size:17px;
 
-    .subtitle {
-      color: #858590;
+    line-height:1.7;
+}
 
-      margin-top: 6px;
+.hero-actions{
+    position:relative;
+    z-index:10;
 
-      font-size: 14px;
-    }
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    .categories {
-      display: flex;
+    gap:10px;
 
-      gap: 10px;
+    flex-wrap:wrap;
 
-      overflow-x: auto;
+    margin-top:32px;
+}
 
-      padding:
-        12px 0 22px;
+.primary-button,
+.secondary-button{
+    position:relative;
+    z-index:10;
 
-      scrollbar-width: none;
-    }
+    min-height:50px;
 
-    .categories::-webkit-scrollbar {
-      display: none;
-    }
+    padding:13px 20px;
 
-    .category {
-      border:
-        1px solid #25252d;
+    border-radius:16px;
 
-      background: #111116;
-      color: #aaaab5;
+    font-weight:850;
 
-      border-radius: 14px;
+    border:1px solid rgba(255,255,255,.13);
 
-      padding: 12px 17px;
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
 
-      white-space: nowrap;
+.primary-button{
+    color:#08080d;
 
-      cursor: pointer;
-    }
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #e9e8f0 55%,
+            #c9f7ff
+        );
 
-    .category.active {
-      background: white;
-      color: #09090b;
+    box-shadow:
+        0 12px 45px rgba(255,255,255,.13);
+}
 
-      border-color: white;
+.secondary-button{
+    color:#fff;
 
-      font-weight: 700;
-    }
+    background:rgba(255,255,255,.055);
 
-    .section-title {
-      font-size: 22px;
-      font-weight: 800;
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+}
 
-      margin:
-        8px 0 16px;
-    }
+.primary-button:hover,
+.secondary-button:hover{
+    transform:translateY(-3px);
+}
 
-    .products {
-      display: grid;
+.primary-button:active,
+.secondary-button:active{
+    transform:scale(.97);
+}
 
-      grid-template-columns:
-        repeat(3, 1fr);
+.hero-stats{
+    position:relative;
+    z-index:5;
 
-      gap: 14px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
 
-      padding-bottom: 50px;
-    }
+    gap:9px;
 
-    .product {
-      background: #111116;
+    margin-top:24px;
+}
 
-      border:
-        1px solid #222229;
+.hero-stat{
+    padding:9px 12px;
 
-      border-radius: 18px;
+    border:1px solid rgba(255,255,255,.075);
 
-      padding: 18px;
-    }
+    border-radius:13px;
 
-    .product-icon {
-      width: 44px;
-      height: 44px;
+    background:rgba(255,255,255,.035);
 
-      border-radius: 13px;
+    color:#858590;
 
-      background: #1b1b22;
+    font-size:12px;
+}
 
-      display: flex;
+.hero-stat strong{
+    color:#fff;
+}
 
-      align-items: center;
-      justify-content: center;
+.support-link{
+    position:relative;
+    z-index:10;
 
-      font-size: 22px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
 
-      margin-bottom: 14px;
-    }
+    margin-top:15px;
 
-    .product-name {
-      font-weight: 700;
-    }
+    padding:12px 17px;
 
-    .product-description {
-      color: #777783;
+    border-radius:15px;
 
-      font-size: 13px;
+    border:1px solid rgba(255,255,255,.11);
 
-      margin-top: 5px;
-    }
+    background:rgba(255,255,255,.045);
 
-    .product-bottom {
-      display: flex;
+    color:#fff;
 
-      align-items: center;
-      justify-content: space-between;
+    text-decoration:none;
 
-      gap: 10px;
+    font-weight:750;
 
-      margin-top: 18px;
-    }
+    transition:.2s;
+}
 
-    .price {
-      font-weight: 800;
-    }
+.support-link:hover{
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.09);
+}
 
-    .buy {
-      border: 0;
+.news-link{
+    position:relative;
+    z-index:10;
 
-      background: white;
-      color: #09090b;
+    display:inline-block;
 
-      border-radius: 11px;
+    margin-top:17px;
 
-      padding: 10px 14px;
+    color:#777783;
 
-      font-weight: 700;
+    font-size:13px;
 
-      cursor: pointer;
-    }
+    text-decoration:none;
+}
 
-    /* =========================
-       MODAL
-    ========================= */
+.news-link:hover{
+    color:#fff;
+}
 
-    .modal {
-      position: fixed;
 
-      inset: 0;
+/* =========================================================
+   WHY FAEVU
+========================================================= */
 
-      display: none;
+.section{
+    position:relative;
+    z-index:1;
 
-      align-items: center;
-      justify-content: center;
+    padding:80px 0 110px;
+}
 
-      padding: 18px;
+.section-head{
+    text-align:center;
 
-      background:
-        rgba(0, 0, 0, .75);
+    margin-bottom:28px;
+}
 
-      backdrop-filter:
-        blur(8px);
+.section-head h2{
+    font-size:40px;
 
-      z-index: 10;
+    letter-spacing:-2px;
+}
 
-      overflow-y: auto;
-    }
+.section-head p{
+    margin-top:9px;
 
-    .modal.show {
-      display: flex;
-    }
+    color:#74747f;
 
-    .modal-content {
-      width: min(
-        460px,
-        100%
-      );
+    font-size:15px;
+}
 
-      max-height:
-        calc(100vh - 36px);
+.advantages{
+    display:grid;
 
-      overflow-y: auto;
+    grid-template-columns:
+        repeat(3,1fr);
 
-      background: #111116;
+    gap:14px;
+}
 
-      border:
-        1px solid #292931;
+.advantage{
+    position:relative;
 
-      border-radius: 22px;
+    min-height:230px;
 
-      padding: 23px;
+    padding:25px;
 
-      position: relative;
-    }
+    overflow:hidden;
 
-    .close {
-      position: absolute;
+    border:1px solid rgba(255,255,255,.09);
 
-      top: 12px;
-      right: 16px;
+    border-radius:25px;
 
-      background: none;
-      border: 0;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.065),
+            rgba(255,255,255,.025)
+        );
 
-      color: #888894;
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.05);
 
-      font-size: 26px;
+    transition:
+        transform .25s ease,
+        border-color .25s ease;
+}
 
-      cursor: pointer;
-    }
+.advantage::after{
+    content:"";
 
-    .order-title {
-      font-size: 21px;
-      font-weight: 800;
+    position:absolute;
 
-      margin-bottom: 18px;
-    }
+    width:220px;
+    height:150px;
 
-    .order-box {
-      background: #19191f;
+    right:-100px;
+    bottom:-80px;
 
-      border-radius: 15px;
+    border-radius:50%;
 
-      padding: 15px;
-    }
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,255,255,.08),
+            transparent 70%
+        );
 
-    .order-row {
-      display: flex;
+    filter:blur(15px);
 
-      justify-content: space-between;
+    pointer-events:none;
+}
 
-      gap: 15px;
+.advantage:hover{
+    transform:translateY(-5px);
 
-      padding: 7px 0;
+    border-color:rgba(255,255,255,.17);
+}
 
-      font-size: 14px;
-    }
+.advantage-icon{
+    font-size:29px;
 
-    .order-row span:first-child {
-      color: #858591;
-    }
+    margin-bottom:35px;
+}
 
-    .payment {
-      margin-top: 15px;
+.advantage h3{
+    position:relative;
+    z-index:2;
 
-      padding: 15px;
+    font-size:19px;
+}
 
-      border:
-        1px dashed #3b3b45;
+.advantage p{
+    position:relative;
+    z-index:2;
 
-      border-radius: 15px;
-    }
+    margin-top:9px;
 
-    .payment-title {
-      font-weight: 700;
+    color:#777783;
 
-      margin-bottom: 10px;
-    }
+    font-size:14px;
 
-    .payment-text {
-      color: #9a9aa5;
+    line-height:1.6;
+}
 
-      font-size: 13px;
 
-      line-height: 1.6;
-    }
+/* =========================================================
+   SHOP
+========================================================= */
 
-    .payment-details {
-      margin-top: 12px;
+.shop{
+    position:relative;
+    z-index:1;
 
-      padding: 12px;
+    display:none;
 
-      background: #19191f;
+    padding:45px 0 100px;
+}
 
-      border-radius: 12px;
+.shop-shell{
+    position:relative;
 
-      color: white;
+    padding:22px;
 
-      line-height: 1.7;
-    }
+    border:1px solid rgba(255,255,255,.08);
 
-    .payment-warning {
-      margin-top: 13px;
+    border-radius:32px;
 
-      padding: 12px;
+    background:rgba(255,255,255,.018);
 
-      background:
-        rgba(255, 180, 0, .08);
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.20);
+}
 
-      border:
-        1px solid
-        rgba(255, 180, 0, .2);
+.shop-top{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
 
-      border-radius: 12px;
+    gap:20px;
 
-      color: #d7c08a;
+    margin-bottom:22px;
+}
 
-      font-size: 13px;
+.shop-title h2{
+    font-size:40px;
 
-      line-height: 1.5;
-    }
+    letter-spacing:-2px;
+}
 
-    .order-copy {
-      margin-top: 10px;
+.shop-title p{
+    margin-top:7px;
 
-      width: 100%;
+    color:#777783;
 
-      border:
-        1px solid #30303a;
+    font-size:15px;
+}
 
-      background: #19191f;
-      color: white;
+.back-button{
+    position:relative;
+    z-index:10;
 
-      border-radius: 11px;
+    flex:0 0 auto;
 
-      padding: 9px;
+    padding:11px 15px;
 
-      cursor: pointer;
+    border-radius:14px;
 
-      font-size: 13px;
-    }
+    border:1px solid rgba(255,255,255,.10);
 
-    .username-box {
-      margin-top: 15px;
-    }
+    background:rgba(255,255,255,.05);
 
-    .username-box label {
-      display: block;
+    color:#a4a4ae;
 
-      margin-bottom: 8px;
+    transition:.2s;
+}
 
-      color: #9a9aa5;
+.back-button:hover{
+    color:#fff;
 
-      font-size: 13px;
-    }
+    background:rgba(255,255,255,.09);
 
-    .username-box input {
-      width: 100%;
+    transform:translateY(-2px);
+}
 
-      padding: 13px;
+.search-wrapper{
+    margin-bottom:17px;
+}
 
-      border:
-        1px solid #30303a;
+.search{
+    width:100%;
 
-      background: #19191f;
+    min-height:49px;
 
-      color: white;
+    padding:13px 16px;
 
-      border-radius: 13px;
+    border-radius:16px;
 
-      outline: none;
+    border:1px solid rgba(255,255,255,.09);
 
-      font-size: 14px;
-    }
+    outline:none;
 
-    .username-box input:focus {
-      border-color:
-        #666674;
-    }
+    background:rgba(255,255,255,.035);
 
-    .receipt-label {
-      display: block;
+    color:#fff;
 
-      margin-top: 15px;
+    transition:
+        border-color .2s,
+        background .2s;
+}
 
-      background: #1a1a21;
+.search::placeholder{
+    color:#666672;
+}
 
-      border:
-        1px dashed #40404b;
+.search:focus{
+    border-color:rgba(255,255,255,.25);
 
-      border-radius: 14px;
+    background:rgba(255,255,255,.055);
+}
 
-      padding: 14px;
+.categories{
+    position:relative;
+    z-index:10;
 
-      text-align: center;
+    display:flex;
 
-      color: #b1b1bb;
+    gap:8px;
 
-      cursor: pointer;
-    }
+    overflow-x:auto;
 
-    .receipt-label input {
-      display: none;
-    }
+    padding:4px 0 22px;
 
-    .selected-file {
-      margin-top: 8px;
+    scrollbar-width:none;
+}
 
-      color: #8f8f9a;
+.categories::-webkit-scrollbar{
+    display:none;
+}
 
-      font-size: 12px;
+.category-button{
+    position:relative;
+    z-index:10;
 
-      text-align: center;
+    flex:0 0 auto;
 
-      word-break: break-word;
-    }
+    white-space:nowrap;
 
-    .send {
-      width: 100%;
+    padding:11px 15px;
 
-      margin-top: 15px;
+    border-radius:15px;
 
-      border: 0;
+    border:1px solid rgba(255,255,255,.09);
 
-      background: white;
+    background:rgba(255,255,255,.04);
 
-      color: #09090b;
+    color:#9999a5;
 
-      border-radius: 13px;
+    transition:.2s;
+}
 
-      padding: 13px;
+.category-button:hover{
+    background:rgba(255,255,255,.08);
 
-      font-weight: 800;
+    color:#fff;
+}
 
-      cursor: pointer;
-    }
+.category-button.active{
+    background:#fff;
 
-    .send:disabled {
-      opacity: .5;
+    border-color:#fff;
 
-      cursor: not-allowed;
-    }
+    color:#08080d;
 
-    .status {
-      margin-top: 12px;
+    font-weight:850;
+}
 
-      text-align: center;
+.products{
+    display:grid;
 
-      font-size: 13px;
+    grid-template-columns:
+        repeat(3,1fr);
 
-      color: #9999a4;
-    }
+    gap:14px;
+}
 
-    /* =========================
-       MOBILE
-    ========================= */
+.product{
+    position:relative;
 
-    @media (max-width: 700px) {
+    min-height:245px;
 
-      .products {
+    overflow:hidden;
+
+    padding:20px;
+
+    border:1px solid rgba(255,255,255,.09);
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.065),
+            rgba(255,255,255,.025)
+        );
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.045);
+
+    transition:
+        transform .22s ease,
+        border-color .22s ease,
+        box-shadow .22s ease;
+}
+
+.product::before{
+    content:"";
+
+    position:absolute;
+
+    width:170px;
+    height:170px;
+
+    right:-85px;
+    top:-85px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.10),
+            transparent 70%
+        );
+
+    filter:blur(20px);
+
+    pointer-events:none;
+}
+
+.product:hover{
+    transform:translateY(-4px);
+
+    border-color:rgba(255,255,255,.18);
+
+    box-shadow:
+        0 18px 50px rgba(0,0,0,.25);
+}
+
+.product.unavailable{
+    opacity:.65;
+}
+
+.product.unavailable:hover{
+    transform:none;
+}
+
+.product-icon{
+    position:relative;
+    z-index:2;
+
+    width:60px;
+    height:60px;
+
+    display:grid;
+    place-items:center;
+
+    margin-bottom:22px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,.09);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.025)
+        );
+
+    font-size:28px;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.08);
+}
+
+.product-name{
+    position:relative;
+    z-index:2;
+
+    font-size:18px;
+
+    font-weight:850;
+
+    letter-spacing:-.3px;
+}
+
+.product-description{
+    position:relative;
+    z-index:2;
+
+    margin-top:6px;
+
+    color:#777783;
+
+    font-size:13px;
+
+    line-height:1.5;
+}
+
+.stock{
+    position:relative;
+    z-index:2;
+
+    display:inline-flex;
+
+    margin-top:13px;
+
+    padding:6px 9px;
+
+    border-radius:999px;
+
+    font-size:11px;
+
+    font-weight:850;
+}
+
+.stock.in{
+    color:#82eeb8;
+
+    background:rgba(80,255,170,.08);
+
+    border:1px solid rgba(80,255,170,.13);
+}
+
+.stock.out{
+    color:#ff9aac;
+
+    background:rgba(255,90,120,.08);
+
+    border:1px solid rgba(255,90,120,.13);
+}
+
+.product-bottom{
+    position:relative;
+    z-index:2;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-top:21px;
+}
+
+.price{
+    font-size:20px;
+
+    font-weight:900;
+
+    letter-spacing:-.5px;
+}
+
+.buy-button{
+    border:0;
+
+    padding:10px 15px;
+
+    border-radius:13px;
+
+    background:#fff;
+
+    color:#08080d;
+
+    font-weight:850;
+
+    box-shadow:
+        0 8px 25px rgba(255,255,255,.08);
+
+    transition:.2s;
+}
+
+.buy-button:hover{
+    transform:scale(1.03);
+
+    box-shadow:
+        0 10px 35px rgba(255,255,255,.14);
+}
+
+.buy-button:active{
+    transform:scale(.96);
+}
+
+.buy-button:disabled{
+    transform:none;
+
+    background:rgba(255,255,255,.07);
+
+    color:#666672;
+
+    box-shadow:none;
+
+    cursor:not-allowed;
+}
+
+.empty{
+    grid-column:1/-1;
+
+    padding:55px 20px;
+
+    text-align:center;
+
+    color:#777783;
+
+    border:1px dashed rgba(255,255,255,.11);
+
+    border-radius:22px;
+}
+
+
+/* =========================================================
+   PAYMENT
+========================================================= */
+
+.payment-page{
+    position:relative;
+    z-index:1;
+
+    display:none;
+
+    padding:45px 0 100px;
+}
+
+.payment-page.show{
+    display:block;
+}
+
+.checkout-progress{
+    display:flex;
+
+    gap:7px;
+
+    margin:8px 0 22px;
+}
+
+.progress-step{
+    flex:1;
+
+    height:5px;
+
+    border-radius:99px;
+
+    background:rgba(255,255,255,.07);
+}
+
+.progress-step.active{
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #a9eaff
+        );
+
+    box-shadow:
+        0 0 14px rgba(160,220,255,.22);
+}
+
+.payment-layout{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:18px;
+
+    align-items:start;
+}
+
+.payment-card{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:27px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.03)
+        );
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.06),
+        0 25px 80px rgba(0,0,0,.22);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+}
+
+.payment-card::before{
+    content:"";
+
+    position:absolute;
+
+    inset:-1px;
+
+    border-radius:27px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.12),
+            transparent 35%,
+            rgba(120,230,255,.07)
+        );
+
+    pointer-events:none;
+}
+
+.payment-card > *{
+    position:relative;
+    z-index:2;
+}
+
+.payment-title{
+    margin-top:15px;
+
+    font-size:30px;
+
+    letter-spacing:-1.5px;
+}
+
+.payment-subtitle{
+    margin-top:7px;
+
+    color:#858591;
+
+    font-size:14px;
+}
+
+.summary{
+    margin-top:20px;
+
+    padding:16px;
+
+    border-radius:18px;
+
+    background:rgba(0,0,0,.18);
+}
+
+.summary-row{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:9px 0;
+
+    font-size:14px;
+}
+
+.summary-row span{
+    color:#858591;
+}
+
+.summary-row strong{
+    color:#fff;
+
+    text-align:right;
+}
+
+.payment-details{
+    margin-top:18px;
+
+    padding:17px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.045);
+
+    color:#9999a4;
+
+    font-size:14px;
+
+    line-height:1.7;
+}
+
+.payment-details strong{
+    color:#fff;
+}
+
+.warning{
+    margin-top:12px;
+
+    padding:14px;
+
+    border-radius:16px;
+
+    background:rgba(255,190,70,.07);
+
+    border:1px solid rgba(255,190,70,.15);
+
+    color:#d8c58f;
+
+    font-size:13px;
+
+    line-height:1.55;
+}
+
+.field{
+    margin-top:17px;
+}
+
+.field label{
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#9696a2;
+
+    font-size:13px;
+}
+
+.field input{
+    width:100%;
+
+    min-height:48px;
+
+    padding:13px 15px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    outline:none;
+
+    background:rgba(0,0,0,.18);
+
+    color:#fff;
+
+    transition:.2s;
+}
+
+.field input:focus{
+    border-color:rgba(255,255,255,.27);
+
+    background:rgba(255,255,255,.035);
+}
+
+.receipt-label{
+    display:block;
+
+    margin-top:14px;
+
+    padding:18px;
+
+    border:1px dashed rgba(255,255,255,.17);
+
+    border-radius:17px;
+
+    text-align:center;
+
+    color:#aaaab5;
+
+    background:rgba(255,255,255,.03);
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.receipt-label:hover{
+    background:rgba(255,255,255,.055);
+
+    color:#fff;
+}
+
+.receipt-label input{
+    display:none;
+}
+
+.selected-file{
+    margin-top:8px;
+
+    color:#777783;
+
+    font-size:12px;
+
+    text-align:center;
+
+    word-break:break-word;
+}
+
+.send-button{
+    width:100%;
+
+    margin-top:16px;
+
+    min-height:49px;
+
+    border:0;
+
+    border-radius:15px;
+
+    background:#fff;
+
+    color:#08080d;
+
+    font-weight:900;
+
+    transition:.2s;
+}
+
+.send-button:hover:not(:disabled){
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 35px rgba(255,255,255,.12);
+}
+
+.send-button:active:not(:disabled){
+    transform:scale(.98);
+}
+
+.send-button:disabled{
+    opacity:.5;
+
+    cursor:not-allowed;
+}
+
+.status{
+    margin-top:12px;
+
+    color:#9999a5;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    text-align:center;
+}
+
+.out-of-stock-note{
+    margin-top:20px;
+
+    padding:15px;
+
+    border-radius:17px;
+
+    color:#ff9cac;
+
+    background:rgba(255,100,130,.06);
+
+    border:1px solid rgba(255,100,130,.13);
+
+    font-size:13px;
+
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+    position:relative;
+    z-index:1;
+
+    padding:40px 20px 60px;
+
+    text-align:center;
+
+    color:#575761;
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+    bottom:22px;
+
+    z-index:5000;
+
+    transform:
+        translate(-50%,20px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    max-width:
+        calc(100% - 30px);
+
+    padding:12px 16px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:rgba(20,20,27,.92);
+
+    color:#fff;
+
+    font-size:13px;
+
+    text-align:center;
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.4);
+
+    transition:
+        opacity .25s ease,
+        transform .25s ease;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:850px){
+
+    .advantages{
         grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-      .advantages-grid {
-        grid-template-columns: 1fr;
-      }
-
+            repeat(2,1fr);
     }
 
-    @media (max-width: 470px) {
-
-      .container {
-        width:
-          calc(100% - 20px);
-      }
-
-      .products {
-        grid-template-columns: 1fr;
-      }
-
-      .home-links {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: 75vh;
-      }
-
+    .products{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-  </style>
+    .payment-layout{
+        grid-template-columns:1fr;
+    }
 
+}
+
+@media(max-width:650px){
+
+    .nav{
+        top:8px;
+
+        margin-top:8px;
+
+        min-height:60px;
+
+        border-radius:20px;
+    }
+
+    .brand{
+        font-size:18px;
+    }
+
+    .brand::before{
+        width:32px;
+        height:32px;
+    }
+
+    .nav-button{
+        min-height:42px;
+
+        padding:9px 14px;
+    }
+
+    .hero{
+        min-height:auto;
+
+        padding:
+            90px 0
+            85px;
+    }
+
+    .hero h1{
+        font-size:
+            clamp(
+                55px,
+                17vw,
+                80px
+            );
+
+        letter-spacing:-4px;
+    }
+
+    .hero-description{
+        font-size:15px;
+
+        line-height:1.65;
+    }
+
+    .hero-actions{
+        flex-direction:column;
+
+        width:min(100%,360px);
+
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .primary-button,
+    .secondary-button{
+        width:100%;
+    }
+
+    .hero-stats{
+        flex-direction:column;
+
+        align-items:center;
+    }
+
+    .hero-stat{
+        width:max-content;
+
+        max-width:100%;
+    }
+
+    .advantages{
+        grid-template-columns:1fr;
+    }
+
+    .products{
+        grid-template-columns:1fr 1fr;
+
+        gap:9px;
+    }
+
+    .shop{
+        padding-top:28px;
+    }
+
+    .shop-shell{
+        padding:13px;
+
+        border-radius:25px;
+    }
+
+    .shop-top{
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:13px;
+    }
+
+    .shop-title h2{
+        font-size:34px;
+    }
+
+    .back-button{
+        width:max-content;
+    }
+
+    .product{
+        min-height:235px;
+
+        padding:15px;
+
+        border-radius:20px;
+    }
+
+    .product-icon{
+        width:52px;
+        height:52px;
+
+        margin-bottom:17px;
+
+        border-radius:15px;
+
+        font-size:24px;
+    }
+
+    .product-name{
+        font-size:15px;
+    }
+
+    .product-description{
+        font-size:11px;
+    }
+
+    .stock{
+        font-size:9px;
+
+        padding:5px 7px;
+    }
+
+    .product-bottom{
+        flex-direction:column;
+
+        align-items:stretch;
+
+        margin-top:15px;
+    }
+
+    .price{
+        font-size:18px;
+    }
+
+    .buy-button{
+        width:100%;
+    }
+
+    .payment-page{
+        padding-top:28px;
+    }
+
+    .payment-card{
+        padding:19px;
+
+        border-radius:23px;
+    }
+
+    .payment-title{
+        font-size:25px;
+    }
+
+}
+
+@media(max-width:390px){
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .product{
+        min-height:220px;
+    }
+
+    .hero h1{
+        font-size:53px;
+
+        letter-spacing:-3px;
+    }
+
+    .section-head h2{
+        font-size:34px;
+    }
+
+}
+</style>
 </head>
 
 <body>
 
-<!-- =========================
-     ГЛАВНАЯ
-========================= -->
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
 
-<section
-  class="home"
-  id="home"
->
+<div class="background">
+    <div class="background-grid"></div>
 
-  <div class="container">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
 
-    <div class="hero">
 
-      <div class="hero-logo">
-        faevu shop
-      </div>
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
 
-      <div class="hero-subtitle">
-        Лучший магазин с минимальными ценами.
-        Robux, Stars.
-      </div>
+<nav class="nav">
 
-      <button
-        class="main-buy"
-        onclick="openShop()"
-      >
-        🛒 Совершить покупку
-      </button>
-
-      <div class="home-links">
-
-        <a
-          class="home-link"
-          href="https://t.me/faevu_shop_support_bot"
-          target="_blank"
-        >
-          💬 Поддержка
-        </a>
-
-        <a
-          class="home-link"
-          href="https://t.me/faevu_info"
-          target="_blank"
-        >
-          📰 Новости
-        </a>
-
-      </div>
-
-      <div class="scroll-hint">
-        ↓ Листайте ниже
-      </div>
-
+    <div class="brand">
+        <span>faevu shop</span>
     </div>
 
-    <div class="advantages">
-
-      <div class="advantages-title">
-        Почему выбирают нас
-      </div>
-
-      <div class="advantages-grid">
-
-        <div class="advantage">
-
-          <div class="advantage-icon">
-            🚀
-          </div>
-
-          <div class="advantage-title">
-            Быстрая доставка
-          </div>
-
-          <div class="advantage-text">
-            Ваш заказ обрабатывается максимально быстро
-            после подтверждения оплаты.
-          </div>
-
-        </div>
-
-        <div class="advantage">
-
-          <div class="advantage-icon">
-            💰
-          </div>
-
-          <div class="advantage-title">
-            Низкие цены
-          </div>
-
-          <div class="advantage-text">
-            Выгодные цены на Telegram Stars, Premium
-            и товары Roblox.
-          </div>
-
-        </div>
-
-        <div class="advantage">
-
-          <div class="advantage-icon">
-            🛡️
-          </div>
-
-          <div class="advantage-title">
-            Надёжный сервис
-          </div>
-
-          <div class="advantage-text">
-            Если возникнут вопросы с заказом,
-            вы всегда сможете обратиться в поддержку.
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     МАГАЗИН
-========================= -->
-
-<section
-  class="shop"
-  id="shop"
->
-
-  <div class="container">
-
-    <div class="shop-header">
-
-      <div>
-
-        <div class="logo">
-          faevu shop
-        </div>
-
-        <div class="subtitle">
-          Telegram & Roblox
-        </div>
-
-      </div>
-
-      <button
-        class="back-home"
-        onclick="openHome()"
-      >
-        ← Главная
-      </button>
-
-    </div>
-
-
-    <div class="categories">
-
-      <button
-        class="category active"
-        onclick="showCategory('stars', this)"
-      >
-        ⭐️ Stars
-      </button>
-
-      <button
-        class="category"
-        onclick="showCategory('premium', this)"
-      >
-        💎 Premium
-      </button>
-
-      <button
-        class="category"
-        onclick="showCategory('gamepass', this)"
-      >
-        🎮 Game Pass
-      </button>
-
-      <button
-        class="category"
-        onclick="showCategory('rf', this)"
-      >
-        🇷🇺 Коды РФ
-      </button>
-
-      <button
-        class="category"
-        onclick="showCategory('world', this)"
-      >
-        🌎 Коды мира
-      </button>
-
-    </div>
-
-
-    <div
-      class="section-title"
-      id="sectionTitle"
+    <button
+        type="button"
+        class="nav-button"
+        id="navShopButton"
     >
-      Telegram Stars
+        Магазин
+    </button>
+
+</nav>
+
+
+<!-- =========================================================
+     HOME
+========================================================= -->
+
+<main id="home">
+
+    <section class="hero">
+
+        <div class="container hero-content">
+
+            <div class="eyebrow">
+                ✦ Цифровой магазин без лишнего
+            </div>
+
+            <h1 class="shine">
+                faevu shop
+            </h1>
+
+            <p class="hero-description">
+                Telegram Stars, Premium и товары Roblox
+                по выгодным ценам. Выбирайте товар,
+                оформляйте заказ и отправляйте чек
+                прямо на сайте.
+            </p>
+
+
+            <div class="hero-actions">
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="openShopButton"
+                >
+                    🛒 Открыть магазин
+                </button>
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="detailsButton"
+                >
+                    Подробнее
+                </button>
+
+            </div>
+
+
+            <div class="hero-stats">
+
+                <div class="hero-stat">
+                    ⚡ <strong>Быстро</strong> оформление
+                </div>
+
+                <div class="hero-stat">
+                    🔒 <strong>Безопасная</strong> передача заказа
+                </div>
+
+                <div class="hero-stat">
+                    💬 <strong>Поддержка</strong> онлайн
+                </div>
+
+            </div>
+
+
+            <a
+                class="support-link"
+                href="https://t.me/faevu_shop_support_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                💬 Поддержка
+            </a>
+
+
+            <br>
+
+            <a
+                class="news-link"
+                href="https://t.me/faevu_info"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Новости →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ADVANTAGES
+    ===================================================== -->
+
+    <section
+        class="section"
+        id="advantages"
+    >
+
+        <div class="container">
+
+            <div class="section-head">
+
+                <h2>
+                    Почему
+                    <span class="shine">
+                        Faevu
+                    </span>
+                </h2>
+
+                <p>
+                    Простой заказ и аккуратный сервис
+                </p>
+
+            </div>
+
+
+            <div class="advantages">
+
+                <article class="advantage">
+
+                    <div class="advantage-icon">
+                        ⚡️
+                    </div>
+
+                    <h3>
+                        Быстрая обработка
+                    </h3>
+
+                    <p>
+                        Заказы передаются в обработку
+                        сразу после подтверждения оплаты.
+                    </p>
+
+                </article>
+
+
+                <article class="advantage">
+
+                    <div class="advantage-icon">
+                        ✦
+                    </div>
+
+                    <h3>
+                        Выгодные цены
+                    </h3>
+
+                    <p>
+                        Telegram Stars, Premium и товары
+                        Roblox собраны в одном месте.
+                    </p>
+
+                </article>
+
+
+                <article class="advantage">
+
+                    <div class="advantage-icon">
+                        🛡️
+                    </div>
+
+                    <h3>
+                        Поддержка
+                    </h3>
+
+                    <p>
+                        Если возникнет вопрос по заказу,
+                        можно быстро обратиться
+                        в поддержку.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     SHOP
+========================================================= -->
+
+<section
+    class="shop"
+    id="shop"
+>
+
+    <div class="container">
+
+        <div class="shop-shell">
+
+            <div class="shop-top">
+
+                <div class="shop-title">
+
+                    <h2>
+                        Магазин
+                    </h2>
+
+                    <p>
+                        Выберите категорию и нужный товар
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="back-button"
+                    id="homeButton"
+                >
+                    ← На главную
+                </button>
+
+            </div>
+
+
+            <div class="search-wrapper">
+
+                <input
+                    id="productSearch"
+                    class="search"
+                    type="search"
+                    placeholder="🔎  Найти товар..."
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
+            </div>
+
+
+            <div
+                class="categories"
+                id="categories"
+            >
+
+                <button
+                    type="button"
+                    class="category-button active"
+                    data-category="stars"
+                >
+                    ⭐️ Stars
+                </button>
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="premium"
+                >
+                    💎 Premium
+                </button>
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="gamepass"
+                >
+                    🎮 Game Pass
+                </button>
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="rf"
+                >
+                    🇷🇺 Коды РФ
+                </button>
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="world"
+                >
+                    🌎 Коды мира
+                </button>
+
+            </div>
+
+
+            <div
+                class="products"
+                id="products"
+            ></div>
+
+        </div>
+
     </div>
-
-
-    <div
-      class="products"
-      id="products"
-    ></div>
-
-  </div>
 
 </section>
 
 
-<!-- =========================
-     ЗАКАЗ
-========================= -->
+<!-- =========================================================
+     PAYMENT
+========================================================= -->
+
+<section
+    class="payment-page"
+    id="paymentPage"
+>
+
+    <div class="container">
+
+        <button
+            type="button"
+            class="back-button"
+            id="closePaymentButton"
+        >
+            ← Вернуться к товарам
+        </button>
+
+
+        <div class="checkout-progress">
+
+            <div class="progress-step active"></div>
+            <div class="progress-step active"></div>
+            <div class="progress-step"></div>
+
+        </div>
+
+
+        <div class="payment-layout">
+
+
+            <!-- ORDER INFO -->
+
+            <div class="payment-card">
+
+                <div class="eyebrow">
+                    Оформление заказа
+                </div>
+
+
+                <h2
+                    class="payment-title shine"
+                    id="paymentProductTitle"
+                >
+                    —
+                </h2>
+
+
+                <p class="payment-subtitle">
+                    Проверьте данные перед оплатой.
+                </p>
+
+
+                <div class="summary">
+
+                    <div class="summary-row">
+
+                        <span>
+                            Номер заказа
+                        </span>
+
+                        <strong id="orderNumber">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Товар
+                        </span>
+
+                        <strong id="orderProduct">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            К оплате
+                        </span>
+
+                        <strong id="orderPrice">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="out-of-stock-note"
+                    id="outOfStockNote"
+                    style="display:none"
+                >
+                    Этот товар сейчас отсутствует
+                    в наличии. Оформление заказа
+                    недоступно.
+                </div>
+
+            </div>
+
+
+            <!-- PAYMENT FORM -->
+
+            <div
+                class="payment-card"
+                id="paymentFormCard"
+            >
+
+                <h3
+                    style="
+                        font-size:19px;
+                        letter-spacing:-.4px;
+                    "
+                >
+                    Оплата и отправка
+                </h3>
+
+
+                <div class="payment-details">
+
+                    <strong>
+                        💳 Реквизиты для оплаты
+                    </strong>
+
+                    <br>
+
+                    Переведите необходимую сумму
+                    и после этого прикрепите
+                    скриншот оплаты.
+
+                    <br><br>
+
+                    <strong>
+                        ⚠️ При переводе по номеру телефона
+                    </strong>
+
+                    <br>
+
+                    Переводить только на Т-Банк.
+
+                    <br><br>
+
+                    <strong>
+                        Номер телефона:
+                    </strong>
+
+                    <br>
+
+                    +7 923 022 93 23
+
+                    <br><br>
+
+                    <strong>
+                        Номер карты:
+                    </strong>
+
+                    <br>
+
+                    2200 3961 1188 2920
+
+                </div>
+
+
+                <div class="warning">
+
+                    ⚠️
+                    <strong>
+                        ВАЖНО!
+                    </strong>
+
+                    <br><br>
+
+                    Обязательно укажите номер заказа
+                    <strong id="paymentOrderNumber">
+                        —
+                    </strong>
+                    в сообщении к переводу.
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="username">
+                        👤 Username, на который отправить товар
+                    </label>
+
+                    <input
+                        id="username"
+                        type="text"
+                        placeholder="@username"
+                        autocomplete="off"
+                        spellcheck="false"
+                    >
+
+                </div>
+
+
+                <label
+                    class="receipt-label"
+                    for="receipt"
+                >
+
+                    📎 Прикрепить скриншот оплаты
+
+                    <input
+                        id="receipt"
+                        type="file"
+                        accept="image/*"
+                    >
+
+                </label>
+
+
+                <div
+                    class="selected-file"
+                    id="selectedFile"
+                >
+                    Файл не выбран
+                </div>
+
+
+                <button
+                    type="button"
+                    class="send-button"
+                    id="sendButton"
+                >
+                    Отправить заказ
+                </button>
+
+
+                <div
+                    class="status"
+                    id="status"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="shine">
+        faevu shop
+    </div>
+
+    <div style="margin-top:7px">
+        Цифровые товары · быстро · удобно · красиво
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
 
 <div
-  class="modal"
-  id="modal"
->
-
-  <div class="modal-content">
-
-    <button
-      class="close"
-      onclick="closeModal()"
-    >
-      ×
-    </button>
-
-
-    <div class="order-title">
-      Оформление заказа
-    </div>
-
-
-    <div class="order-box">
-
-      <div class="order-row">
-
-        <span>
-          Номер заказа
-        </span>
-
-        <strong id="orderNumber"></strong>
-
-      </div>
-
-
-      <div class="order-row">
-
-        <span>
-          Товар
-        </span>
-
-        <strong id="orderProduct"></strong>
-
-      </div>
-
-
-      <div class="order-row">
-
-        <span>
-          К оплате
-        </span>
-
-        <strong id="orderPrice"></strong>
-
-      </div>
-
-
-      <button
-        class="order-copy"
-        onclick="copyOrderNumber()"
-      >
-        📋 Скопировать номер заказа
-      </button>
-
-    </div>
-
-
-    <!-- ОПЛАТА -->
-
-    <div class="payment">
-
-      <div class="payment-title">
-        💳 Реквизиты для оплаты
-      </div>
-
-      <div class="payment-text">
-        Переведите необходимую сумму по указанным
-        реквизитам, после чего прикрепите скриншот оплаты.
-      </div>
-
-
-      <div class="payment-details">
-
-        <strong>
-          ⚠️ При переводе по номеру телефона
-        </strong>
-
-        <br>
-
-        Переводить только на
-        <strong>Т-Банк</strong>.
-
-        <br><br>
-
-        <strong>
-          Номер телефона:
-        </strong>
-
-        <br>
-
-        +7 923 022 93 23
-
-        <br><br>
-
-        <strong>
-          Номер карты:
-        </strong>
-
-        <br>
-
-        2200 3961 1188 2920
-
-      </div>
-
-
-      <div class="payment-warning">
-
-        ⚠️ <strong>ВАЖНО!</strong>
-
-        <br><br>
-
-        Обязательно укажите номер заказа
-
-        <strong id="paymentOrderNumber"></strong>
-
-        <strong>
-          в сообщении к переводу.
-        </strong>
-
-        <br><br>
-
-        Без номера заказа мы можем не определить,
-        к какому заказу относится перевод.
-
-      </div>
-
-    </div>
-
-
-    <!-- USERNAME -->
-
-    <div class="username-box">
-
-      <label for="username">
-        👤 Username, на который отправить товар
-      </label>
-
-      <input
-        type="text"
-        id="username"
-        placeholder="@username"
-        autocomplete="off"
-      >
-
-    </div>
-
-
-    <!-- СКРИНШОТ -->
-
-    <label class="receipt-label">
-
-      📎 Прикрепить скриншот оплаты
-
-      <input
-        type="file"
-        id="receipt"
-        accept="image/*"
-        onchange="fileSelected()"
-      >
-
-    </label>
-
-
-    <div
-      class="selected-file"
-      id="selectedFile"
-    >
-      Файл не выбран
-    </div>
-
-
-    <button
-      class="send"
-      id="sendButton"
-      onclick="sendOrder()"
-    >
-      Отправить заказ
-    </button>
-
-
-    <div
-      class="status"
-      id="status"
-    ></div>
-
-  </div>
-
-</div>
+    class="toast"
+    id="toast"
+></div>
 
 
 <script>
 
-/* ======================================================
+/* =========================================================
    API
-====================================================== */
+========================================================= */
 
 const API_URL =
-  "https://telegram-shop-api.dvpalov.workers.dev/order";
+    "https://telegram-shop-api.dvpalov.workers.dev/order";
 
 
-/* ======================================================
+/* =========================================================
    ТОВАРЫ
-====================================================== */
 
-const data = {
+   true  = В НАЛИЧИИ
+   false = НЕТ В НАЛИЧИИ
 
-  stars: {
+   Тебе достаточно менять true / false.
+========================================================= */
 
-    title: "Telegram Stars",
+const DATA = {
 
-    icon: "⭐️",
+    stars: {
 
-    products: [
-      ["50 Stars", 78],
-      ["100 Stars", 153],
-      ["150 Stars", 229],
-      ["250 Stars", 381],
-      ["350 Stars", 540],
-      ["500 Stars", 760],
-      ["750 Stars", 1140],
-      ["1000 Stars", 1520],
-      ["1500 Stars", 2280],
-      ["2500 Stars", 3800],
-      ["5000 Stars", 7590],
-      ["10000 Stars", 15200]
-    ]
+        title: "Telegram Stars",
+        icon: "⭐️",
 
-  },
+        products: [
 
+            {
+                name: "50 Stars",
+                price: 78,
+                available: true
+            },
 
-  premium: {
+            {
+                name: "100 Stars",
+                price: 153,
+                available: true
+            },
 
-    title: "Telegram Premium",
+            {
+                name: "150 Stars",
+                price: 229,
+                available: true
+            },
 
-    icon: "💎",
+            {
+                name: "250 Stars",
+                price: 381,
+                available: true
+            },
 
-    products: [
-      ["Premium — 3 месяца", 1200],
-      ["Premium — 6 месяцев", 1600],
-      ["Premium — 1 год", 2900]
-    ]
+            {
+                name: "350 Stars",
+                price: 540,
+                available: true
+            },
 
-  },
+            {
+                name: "500 Stars",
+                price: 760,
+                available: true
+            },
 
+            {
+                name: "750 Stars",
+                price: 1140,
+                available: true
+            },
 
-  gamepass: {
+            {
+                name: "1000 Stars",
+                price: 1520,
+                available: true
+            },
 
-    title: "Roblox — Game Pass",
+            {
+                name: "1500 Stars",
+                price: 2280,
+                available: true
+            },
 
-    icon: "🎮",
+            {
+                name: "2500 Stars",
+                price: 3800,
+                available: true
+            },
 
-    products: [
-      ["50 Robux", 41],
-      ["100 Robux", 80],
-      ["150 Robux", 120],
-      ["200 Robux", 160],
-      ["250 Robux", 200],
-      ["300 Robux", 240],
-      ["350 Robux", 279],
-      ["400 Robux", 320],
-      ["450 Robux", 358],
-      ["500 Robux", 397],
-      ["550 Robux", 438],
-      ["600 Robux", 477],
-      ["650 Robux", 521],
-      ["700 Robux", 562],
-      ["750 Robux", 601],
-      ["800 Robux", 642],
-      ["850 Robux", 682],
-      ["900 Robux", 722],
-      ["950 Robux", 762],
-      ["1000 Robux", 802],
-      ["2000 Robux", 1592],
-      ["3000 Robux", 2372],
-      ["4000 Robux", 3162],
-      ["5000 Robux", 3970]
-    ]
+            {
+                name: "5000 Stars",
+                price: 7590,
+                available: true
+            },
 
-  },
+            {
+                name: "10000 Stars",
+                price: 15200,
+                available: true
+            }
 
+        ]
 
-  rf: {
-
-    title: "Roblox — Коды РФ",
-
-    icon: "🎁",
-
-    products: [
-      ["500 Robux", 690],
-      ["1000 Robux", 1382],
-      ["4000 Robux", 5500],
-      ["5250 Robux", 7222]
-    ]
-
-  },
+    },
 
 
-  world: {
+    premium: {
 
-    title: "Roblox — Коды мира",
+        title: "Telegram Premium",
+        icon: "💎",
 
-    icon: "🌎",
+        products: [
 
-    products: [
-      ["200 Robux", 355],
-      ["800 Robux", 890],
-      ["2000 Robux", 2182],
-      ["4500 Robux", 4750],
-      ["10000 Robux", 9552]
-    ]
+            {
+                name: "Premium — 3 месяца",
+                price: 1200,
+                available: true
+            },
 
-  }
+            {
+                name: "Premium — 6 месяцев",
+                price: 1600,
+                available: true
+            },
+
+            {
+                name: "Premium — 1 год",
+                price: 2900,
+                available: true
+            }
+
+        ]
+
+    },
+
+
+    gamepass: {
+
+        title: "Roblox — Game Pass",
+        icon: "🎮",
+
+        products: [
+
+            {
+                name: "50 Robux",
+                price: 41,
+                available: true
+            },
+
+            {
+                name: "100 Robux",
+                price: 80,
+                available: true
+            },
+
+            {
+                name: "150 Robux",
+                price: 120,
+                available: true
+            },
+
+            {
+                name: "200 Robux",
+                price: 160,
+                available: true
+            },
+
+            {
+                name: "250 Robux",
+                price: 200,
+                available: true
+            },
+
+            {
+                name: "300 Robux",
+                price: 240,
+                available: true
+            },
+
+            {
+                name: "350 Robux",
+                price: 279,
+                available: true
+            },
+
+            {
+                name: "400 Robux",
+                price: 320,
+                available: true
+            },
+
+            {
+                name: "450 Robux",
+                price: 358,
+                available: true
+            },
+
+            {
+                name: "500 Robux",
+                price: 397,
+                available: true
+            },
+
+            {
+                name: "550 Robux",
+                price: 438,
+                available: true
+            },
+
+            {
+                name: "600 Robux",
+                price: 477,
+                available: true
+            },
+
+            {
+                name: "650 Robux",
+                price: 521,
+                available: true
+            },
+
+            {
+                name: "700 Robux",
+                price: 562,
+                available: true
+            },
+
+            {
+                name: "750 Robux",
+                price: 601,
+                available: true
+            },
+
+            {
+                name: "800 Robux",
+                price: 642,
+                available: true
+            },
+
+            {
+                name: "850 Robux",
+                price: 682,
+                available: true
+            },
+
+            {
+                name: "900 Robux",
+                price: 722,
+                available: true
+            },
+
+            {
+                name: "950 Robux",
+                price: 762,
+                available: true
+            },
+
+            {
+                name: "1000 Robux",
+                price: 802,
+                available: true
+            },
+
+            {
+                name: "2000 Robux",
+                price: 1592,
+                available: true
+            },
+
+            {
+                name: "3000 Robux",
+                price: 2372,
+                available: true
+            },
+
+            {
+                name: "4000 Robux",
+                price: 3162,
+                available: true
+            },
+
+            {
+                name: "5000 Robux",
+                price: 3970,
+                available: true
+            }
+
+        ]
+
+    },
+
+
+    rf: {
+
+        title: "Roblox — Коды РФ",
+        icon: "🎁",
+
+        products: [
+
+            {
+                name: "500 Robux",
+                price: 690,
+                available: true
+            },
+
+            {
+                name: "1000 Robux",
+                price: 1382,
+                available: true
+            },
+
+            {
+                name: "4000 Robux",
+                price: 5500,
+                available: true
+            },
+
+            {
+                name: "5250 Robux",
+                price: 7222,
+                available: true
+            }
+
+        ]
+
+    },
+
+
+    world: {
+
+        title: "Roblox — Коды мира",
+        icon: "🌎",
+
+        products: [
+
+            {
+                name: "200 Robux",
+                price: 355,
+                available: true
+            },
+
+            {
+                name: "800 Robux",
+                price: 890,
+                available: true
+            },
+
+            {
+                name: "2000 Robux",
+                price: 2182,
+                available: true
+            },
+
+            {
+                name: "4500 Robux",
+                price: 4750,
+                available: true
+            },
+
+            {
+                name: "10000 Robux",
+                price: 9552,
+                available: true
+            }
+
+        ]
+
+    }
 
 };
 
 
-/* ======================================================
-   СОСТОЯНИЕ
-====================================================== */
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentCategory = "stars";
 
 let selectedProduct = null;
+
 let selectedPrice = null;
+
 let selectedOrder = null;
 
-
-/* ======================================================
-   ГЛАВНАЯ
-====================================================== */
-
-function openShop() {
-
-  document
-    .getElementById("home")
-    .style.display = "none";
-
-  document
-    .getElementById("shop")
-    .classList.add("show");
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
-}
+let selectedAvailable = false;
 
 
-function openHome() {
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-  document
-    .getElementById("shop")
-    .classList.remove("show");
+const home =
+    document.getElementById("home");
 
-  document
-    .getElementById("home")
-    .style.display = "block";
+const shop =
+    document.getElementById("shop");
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+const paymentPage =
+    document.getElementById("paymentPage");
 
-}
-
-
-/* ======================================================
-   КАТЕГОРИИ
-====================================================== */
-
-function showCategory(
-  category,
-  button
-) {
-
-  document
-    .querySelectorAll(".category")
-    .forEach(item => {
-      item.classList.remove("active");
-    });
-
-  button.classList.add("active");
-
-  const categoryData =
-    data[category];
-
-  document
-    .getElementById("sectionTitle")
-    .textContent =
-    categoryData.title;
-
-  const products =
+const products =
     document.getElementById("products");
 
-  products.innerHTML = "";
+const productSearch =
+    document.getElementById("productSearch");
 
-  categoryData.products.forEach(
-    product => {
+const toastElement =
+    document.getElementById("toast");
 
-      const name =
-        product[0];
+const usernameInput =
+    document.getElementById("username");
 
-      const price =
-        product[1];
+const receiptInput =
+    document.getElementById("receipt");
 
-      const card =
-        document.createElement(
-          "div"
+const selectedFile =
+    document.getElementById("selectedFile");
+
+const statusElement =
+    document.getElementById("status");
+
+const sendButton =
+    document.getElementById("sendButton");
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function openHome(){
+
+    home.style.display = "block";
+
+    shop.style.display = "none";
+
+    paymentPage.classList.remove("show");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function openShop(){
+
+    home.style.display = "none";
+
+    shop.style.display = "block";
+
+    paymentPage.classList.remove("show");
+
+    renderProducts();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function closePayment(){
+
+    paymentPage.classList.remove("show");
+
+    shop.style.display = "block";
+
+    renderProducts();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+function setCategory(category){
+
+    if(!DATA[category]){
+        return;
+    }
+
+    currentCategory = category;
+
+    document
+        .querySelectorAll(".category-button")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.category === category
+            );
+
+        });
+
+    renderProducts();
+
+}
+
+
+/* =========================================================
+   RENDER PRODUCTS
+========================================================= */
+
+function renderProducts(){
+
+    const category =
+        DATA[currentCategory];
+
+    const query =
+        productSearch.value
+            .trim()
+            .toLowerCase();
+
+
+    products.innerHTML = "";
+
+
+    const filtered =
+        category.products.filter(product => {
+
+            return (
+                !query ||
+                product.name
+                    .toLowerCase()
+                    .includes(query)
+            );
+
+        });
+
+
+    if(filtered.length === 0){
+
+        products.innerHTML = `
+            <div class="empty">
+                Ничего не найдено
+            </div>
+        `;
+
+        return;
+    }
+
+
+    filtered.forEach((product,index) => {
+
+        const card =
+            document.createElement("article");
+
+
+        card.className =
+            "product" +
+            (
+                product.available
+                    ? ""
+                    : " unavailable"
+            );
+
+
+        const popular =
+            index < 2 &&
+            product.available
+                ? `
+                    <div
+                        style="
+                            position:absolute;
+                            right:15px;
+                            top:15px;
+                            z-index:5;
+                            padding:6px 9px;
+                            border-radius:999px;
+                            background:rgba(255,255,255,.07);
+                            border:1px solid rgba(255,255,255,.09);
+                            color:#c9c9d2;
+                            font-size:9px;
+                            font-weight:900;
+                        "
+                    >
+                        ПОПУЛЯРНОЕ
+                    </div>
+                  `
+                : "";
+
+
+        const stock =
+            product.available
+
+                ? `
+                    <div class="stock in">
+                        ● В наличии
+                    </div>
+                  `
+
+                : `
+                    <div class="stock out">
+                        ● Нет в наличии
+                    </div>
+                  `;
+
+
+        card.innerHTML = `
+
+            ${popular}
+
+            <div class="product-icon">
+                ${category.icon}
+            </div>
+
+            <div class="product-name"></div>
+
+            <div class="product-description"></div>
+
+            ${stock}
+
+            <div class="product-bottom">
+
+                <div class="price">
+                    ${product.price.toLocaleString("ru-RU")} ₽
+                </div>
+
+                <button
+                    type="button"
+                    class="buy-button"
+                    ${product.available ? "" : "disabled"}
+                >
+                    ${
+                        product.available
+                            ? "Купить →"
+                            : "Нет в наличии"
+                    }
+                </button>
+
+            </div>
+
+        `;
+
+
+        card.querySelector(
+            ".product-name"
+        ).textContent =
+            product.name;
+
+
+        card.querySelector(
+            ".product-description"
+        ).textContent =
+            product.available
+                ? "Можно оформить прямо сейчас"
+                : "Продажа временно приостановлена";
+
+
+        const button =
+            card.querySelector(".buy-button");
+
+
+        if(product.available){
+
+            button.addEventListener(
+                "click",
+                function(event){
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    openPayment(
+                        product,
+                        category
+                    );
+
+                }
+            );
+
+        }
+
+
+        products.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   OPEN PAYMENT
+========================================================= */
+
+function openPayment(
+    product,
+    category
+){
+
+    if(
+        !product ||
+        product.available !== true
+    ){
+
+        showToast(
+            "Этот товар сейчас отсутствует в наличии"
         );
 
-      card.className =
-        "product";
-
-      card.innerHTML = `
-
-        <div class="product-icon">
-          ${categoryData.icon}
-        </div>
-
-        <div class="product-name">
-          ${name}
-        </div>
-
-        <div class="product-description">
-          Обработка заказа
-        </div>
-
-        <div class="product-bottom">
-
-          <div class="price">
-            ${price.toLocaleString("ru-RU")} ₽
-          </div>
-
-          <button
-            class="buy"
-            type="button"
-          >
-            Купить
-          </button>
-
-        </div>
-
-      `;
-
-      const buyButton =
-        card.querySelector(".buy");
-
-      buyButton.addEventListener(
-        "click",
-        () => {
-          openOrder(
-            name,
-            price
-          );
-        }
-      );
-
-      products.appendChild(
-        card
-      );
-
-    }
-  );
-
-}
-
-
-/* ======================================================
-   ОТКРЫТИЕ ЗАКАЗА
-====================================================== */
-
-function openOrder(
-  product,
-  price
-) {
-
-  selectedProduct =
-    product;
-
-  selectedPrice =
-    price;
-
-  selectedOrder =
-    "DS-" +
-    Date.now()
-      .toString()
-      .slice(-8);
-
-
-  document
-    .getElementById("orderNumber")
-    .textContent =
-    selectedOrder;
-
-
-  document
-    .getElementById("paymentOrderNumber")
-    .textContent =
-    selectedOrder;
-
-
-  document
-    .getElementById("orderProduct")
-    .textContent =
-    product;
-
-
-  document
-    .getElementById("orderPrice")
-    .textContent =
-    price.toLocaleString(
-      "ru-RU"
-    ) + " ₽";
-
-
-  document
-    .getElementById("status")
-    .textContent = "";
-
-
-  document
-    .getElementById("username")
-    .value = "";
-
-
-  document
-    .getElementById("receipt")
-    .value = "";
-
-
-  document
-    .getElementById("selectedFile")
-    .textContent =
-    "Файл не выбран";
-
-
-  document
-    .getElementById("sendButton")
-    .disabled = false;
-
-
-  document
-    .getElementById("modal")
-    .classList.add("show");
-
-}
-
-
-/* ======================================================
-   ЗАКРЫТИЕ
-====================================================== */
-
-function closeModal() {
-
-  document
-    .getElementById("modal")
-    .classList.remove("show");
-
-}
-
-
-/* ======================================================
-   КОПИРОВАНИЕ
-====================================================== */
-
-async function copyOrderNumber() {
-
-  if (!selectedOrder) {
-    return;
-  }
-
-  try {
-
-    await navigator.clipboard
-      .writeText(
-        selectedOrder
-      );
-
-    document
-      .getElementById("status")
-      .textContent =
-      "✅ Номер заказа скопирован.";
-
-  } catch {
-
-    document
-      .getElementById("status")
-      .textContent =
-      "Номер заказа: " +
-      selectedOrder;
-
-  }
-
-}
-
-
-/* ======================================================
-   ФАЙЛ
-====================================================== */
-
-function fileSelected() {
-
-  const file =
-    document
-      .getElementById("receipt")
-      .files[0];
-
-  document
-    .getElementById("selectedFile")
-    .textContent =
-    file
-      ? file.name
-      : "Файл не выбран";
-
-}
-
-
-/* ======================================================
-   ОТПРАВКА
-====================================================== */
-
-async function sendOrder() {
-
-  const file =
-    document
-      .getElementById("receipt")
-      .files[0];
-
-
-  const usernameInput =
-    document
-      .getElementById("username");
-
-
-  const status =
-    document
-      .getElementById("status");
-
-
-  const sendButton =
-    document
-      .getElementById("sendButton");
-
-
-  let username =
-    usernameInput.value.trim();
-
-
-  if (!username) {
-
-    status.textContent =
-      "❗️ Укажите username.";
-
-    usernameInput.focus();
-
-    return;
-
-  }
-
-
-  if (!username.startsWith("@")) {
-    username =
-      "@" + username;
-  }
-
-
-  if (!file) {
-
-    status.textContent =
-      "❗️ Прикрепите скриншот оплаты.";
-
-    return;
-
-  }
-
-
-  if (
-    !selectedOrder ||
-    !selectedProduct ||
-    !selectedPrice
-  ) {
-
-    status.textContent =
-      "❌ Не удалось определить заказ.";
-
-    return;
-
-  }
-
-
-  status.textContent =
-    "⏳ Отправляем заказ...";
-
-
-  sendButton.disabled =
-    true;
-
-
-  const formData =
-    new FormData();
-
-
-  formData.append(
-    "orderNumber",
-    selectedOrder
-  );
-
-
-  formData.append(
-    "product",
-    selectedProduct
-  );
-
-
-  formData.append(
-    "quantity",
-    "1"
-  );
-
-
-  formData.append(
-    "price",
-    String(selectedPrice)
-  );
-
-
-  formData.append(
-    "username",
-    username
-  );
-
-
-  formData.append(
-    "receipt",
-    file
-  );
-
-
-  try {
-
-    const response =
-      await fetch(
-        API_URL,
-        {
-          method: "POST",
-          body: formData
-        }
-      );
-
-
-    let result;
-
-    try {
-
-      result =
-        await response.json();
-
-    } catch {
-
-      throw new Error(
-        "Сервер вернул неправильный ответ"
-      );
-
+        return;
     }
 
 
-    if (!response.ok || !result.ok) {
+    selectedProduct =
+        product.name;
 
-      throw new Error(
-        result.error ||
-        "Ошибка сервера"
-      );
+    selectedPrice =
+        product.price;
 
-    }
+    selectedAvailable =
+        true;
 
 
-    status.textContent =
-      "✅ Заказ отправлен!";
+    selectedOrder =
+        "FV-" +
+        Date.now()
+            .toString()
+            .slice(-8);
 
+
+    document.getElementById(
+        "paymentProductTitle"
+    ).textContent =
+        category.icon +
+        " " +
+        product.name;
+
+
+    document.getElementById(
+        "orderNumber"
+    ).textContent =
+        selectedOrder;
+
+
+    document.getElementById(
+        "paymentOrderNumber"
+    ).textContent =
+        selectedOrder;
+
+
+    document.getElementById(
+        "orderProduct"
+    ).textContent =
+        product.name;
+
+
+    document.getElementById(
+        "orderPrice"
+    ).textContent =
+        product.price.toLocaleString("ru-RU") +
+        " ₽";
+
+
+    usernameInput.value = "";
+
+    receiptInput.value = "";
+
+    selectedFile.textContent =
+        "Файл не выбран";
+
+    statusElement.textContent =
+        "";
 
     sendButton.disabled =
-      true;
+        false;
+
+    sendButton.textContent =
+        "Отправить заказ";
 
 
-  } catch (error) {
+    document.getElementById(
+        "outOfStockNote"
+    ).style.display =
+        "none";
 
-    console.error(
-      "ORDER ERROR:",
-      error
+
+    document.getElementById(
+        "paymentFormCard"
+    ).style.display =
+        "block";
+
+
+    home.style.display =
+        "none";
+
+    shop.style.display =
+        "none";
+
+    paymentPage.classList.add(
+        "show"
     );
 
 
-    status.textContent =
-      "❌ Не удалось отправить заказ: " +
-      error.message;
-
-
-    sendButton.disabled =
-      false;
-
-  }
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
 
-/* ======================================================
-   ЗАПУСК
-====================================================== */
+/* =========================================================
+   FILE
+========================================================= */
 
-showCategory(
-  "stars",
-  document.querySelector(
-    ".category"
-  )
-);
+function handleFile(){
+
+    const file =
+        receiptInput.files[0];
+
+
+    if(!file){
+
+        selectedFile.textContent =
+            "Файл не выбран";
+
+        return;
+    }
+
+
+    if(
+        !file.type.startsWith("image/")
+    ){
+
+        receiptInput.value = "";
+
+        selectedFile.textContent =
+            "Файл не выбран";
+
+        showToast(
+            "Можно прикрепить только изображение"
+        );
+
+        return;
+    }
+
+
+    selectedFile.textContent =
+        "✓ " + file.name;
+
+}
+
+
+/* =========================================================
+   SEND ORDER
+========================================================= */
+
+async function sendOrder(){
+
+    if(
+        !selectedProduct ||
+        selectedAvailable !== true
+    ){
+
+        statusElement.textContent =
+            "❌ Этот товар сейчас отсутствует в наличии.";
+
+        return;
+    }
+
+
+    let username =
+        usernameInput.value.trim();
+
+
+    const file =
+        receiptInput.files[0];
+
+
+    if(!username){
+
+        statusElement.textContent =
+            "❗️ Укажите username.";
+
+        usernameInput.focus();
+
+        return;
+    }
+
+
+    if(
+        !username.startsWith("@")
+    ){
+
+        username =
+            "@" + username;
+
+    }
+
+
+    if(!file){
+
+        statusElement.textContent =
+            "❗️ Прикрепите скриншот оплаты.";
+
+        return;
+    }
+
+
+    sendButton.disabled =
+        true;
+
+    sendButton.textContent =
+        "Отправляем...";
+
+    statusElement.textContent =
+        "⏳ Отправляем заказ...";
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "orderNumber",
+        selectedOrder
+    );
+
+
+    formData.append(
+        "product",
+        selectedProduct
+    );
+
+
+    formData.append(
+        "quantity",
+        "1"
+    );
+
+
+    formData.append(
+        "price",
+        String(selectedPrice)
+    );
+
+
+    formData.append(
+        "username",
+        username
+    );
+
+
+    formData.append(
+        "receipt",
+        file
+    );
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL,
+                {
+                    method:"POST",
+                    body:formData
+                }
+            );
+
+
+        let result = null;
+
+
+        try{
+
+            result =
+                await response.json();
+
+        }catch(error){
+
+            throw new Error(
+                "Сервер вернул неправильный ответ"
+            );
+
+        }
+
+
+        if(
+            !response.ok ||
+            !result ||
+            result.ok !== true
+        ){
+
+            throw new Error(
+                result?.error ||
+                "Ошибка сервера"
+            );
+
+        }
+
+
+        statusElement.textContent =
+            "✅ Заказ успешно отправлен!";
+
+
+        sendButton.textContent =
+            "Заказ отправлен ✓";
+
+
+        sendButton.disabled =
+            true;
+
+
+        showToast(
+            "Заказ отправлен!"
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Ошибка отправки:",
+            error
+        );
+
+
+        statusElement.textContent =
+            "❌ Не удалось отправить заказ: " +
+            error.message;
+
+
+        sendButton.disabled =
+            false;
+
+
+        sendButton.textContent =
+            "Отправить заказ";
+
+    }
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer = null;
+
+
+function showToast(message){
+
+    toastElement.textContent =
+        message;
+
+
+    toastElement.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            function(){
+
+                toastElement.classList.remove(
+                    "show"
+                );
+
+            },
+            2400
+        );
+
+}
+
+
+/* =========================================================
+   EVENT LISTENERS
+========================================================= */
+
+/*
+    ВАЖНО:
+    Все основные кнопки подключаются здесь.
+    Поэтому мы не используем onclick внутри HTML.
+*/
+
+document
+    .getElementById("navShopButton")
+    .addEventListener(
+        "click",
+        openShop
+    );
+
+
+document
+    .getElementById("openShopButton")
+    .addEventListener(
+        "click",
+        openShop
+    );
+
+
+document
+    .getElementById("homeButton")
+    .addEventListener(
+        "click",
+        openHome
+    );
+
+
+document
+    .getElementById("closePaymentButton")
+    .addEventListener(
+        "click",
+        closePayment
+    );
+
+
+document
+    .getElementById("detailsButton")
+    .addEventListener(
+        "click",
+        function(){
+
+            document
+                .getElementById("advantages")
+                .scrollIntoView({
+                    behavior:"smooth",
+                    block:"start"
+                });
+
+        }
+    );
+
+
+document
+    .querySelectorAll(".category-button")
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                function(){
+
+                    setCategory(
+                        this.dataset.category
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+productSearch
+    .addEventListener(
+        "input",
+        renderProducts
+    );
+
+
+receiptInput
+    .addEventListener(
+        "change",
+        handleFile
+    );
+
+
+sendButton
+    .addEventListener(
+        "click",
+        sendOrder
+    );
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+renderProducts();
 
 </script>
 
