@@ -3254,20 +3254,6 @@ async function sendOrder(){
     const file =
         receiptInput.files[0];
 
-  const tgWebApp = window.Telegram?.WebApp;
-
-if (tgWebApp) {
-  tgWebApp.ready();
-}
-
-const chatId = tgWebApp?.initDataUnsafe?.user?.id;
-
-if (!chatId) {
-  statusElement.textContent =
-    "❌ Не удалось получить Telegram ID. Закройте магазин и откройте его заново через бота.";
-  return;
-}
-
 
     if(!username){
 
@@ -3317,12 +3303,6 @@ if (!chatId) {
         "orderNumber",
         selectedOrder
     );
-
-
-   formData.append(
-    "chat_id",
-    String(chatId)
-);
 
 
     formData.append(
