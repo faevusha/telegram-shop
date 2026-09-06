@@ -3254,11 +3254,17 @@ async function sendOrder(){
     const file =
         receiptInput.files[0];
 
-   const telegramUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
-const chatId = telegramUser?.id;
+  const tgWebApp = window.Telegram?.WebApp;
+
+if (tgWebApp) {
+  tgWebApp.ready();
+}
+
+const chatId = tgWebApp?.initDataUnsafe?.user?.id;
 
 if (!chatId) {
-  statusElement.textContent = "❌ Откройте магазин через Telegram.";
+  statusElement.textContent =
+    "❌ Не удалось получить Telegram ID. Закройте магазин и откройте его заново через бота.";
   return;
 }
 
