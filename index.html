@@ -1727,25 +1727,86 @@ a{
 
 @media(max-width:390px){
 
-    .products{
-        grid-template-columns:1fr;
-    }
+.products{
+grid-template-columns:1fr;
+}
 
-    .product{
-        min-height:220px;
-    }
+.product{
+min-height:220px;
+}
 
-    .hero h1{
-        font-size:53px;
+.hero h1{
+font-size:53px;
+letter-spacing:-3px;
+}
 
-        letter-spacing:-3px;
-    }
-
-    .section-head h2{
-        font-size:34px;
-    }
+.section-head h2{
+font-size:34px;
+}
 
 }
+
+/* КНОПКИ КОПИРОВАНИЯ */
+
+.copy-payment-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+margin-top:14px;
+padding:12px 13px;
+border:1px solid rgba(255,255,255,.08);
+border-radius:15px;
+background:rgba(255,255,255,.035);
+}
+
+.copy-payment-row > div{
+min-width:0;
+}
+
+.copy-payment-label{
+display:block;
+margin-bottom:4px;
+color:#777783;
+font-size:11px;
+}
+
+.copy-payment-value{
+display:block;
+color:#fff;
+font-size:14px;
+font-weight:750;
+word-break:break-word;
+}
+
+.copy-button{
+flex:0 0 auto;
+padding:9px 12px;
+border:1px solid rgba(255,255,255,.10);
+border-radius:12px;
+background:rgba(255,255,255,.07);
+color:#fff;
+font-size:12px;
+font-weight:750;
+transition:.2s;
+}
+
+.copy-button:active{
+transform:scale(.96);
+background:rgba(255,255,255,.13);
+}
+
+@media(max-width:520px){
+.copy-payment-row{
+align-items:flex-start;
+}
+
+.copy-button{
+padding:8px 10px;
+font-size:11px;
+}
+}
+
 </style>
 </head>
 
@@ -2207,49 +2268,62 @@ a{
                 </h3>
 
 
-                <div class="payment-details">
+              <div class="payment-details">
 
-                    <strong>
-                        💳 Реквизиты для оплаты
-                    </strong>
+    <strong>
+        💳 Реквизиты для оплаты
+    </strong>
 
-                    <br>
+    <br>
+    Переведите необходимую сумму
+    и после этого прикрепите
+    скриншот оплаты.
 
-                    Переведите необходимую сумму
-                    и после этого прикрепите
-                    скриншот оплаты.
+    <br><br>
 
-                    <br><br>
+    <strong>
+        ⚠️ При переводе по номеру телефона
+    </strong>
 
-                    <strong>
-                        ⚠️ При переводе по номеру телефона
-                    </strong>
+    <br>
 
-                    <br>
+    Переводить только на Т-Банк.
 
-                    Переводить только на Т-Банк.
+    <div class="copy-payment-row">
+        <div>
+            <span class="copy-payment-label">Номер телефона</span>
+            <span class="copy-payment-value" id="paymentPhone">
+                +7 923 022 93 23
+            </span>
+        </div>
 
-                    <br><br>
+        <button
+            type="button"
+            class="copy-button"
+            data-copy-target="paymentPhone"
+        >
+            Скопировать
+        </button>
+    </div>
 
-                    <strong>
-                        Номер телефона:
-                    </strong>
+    <div class="copy-payment-row">
+        <div>
+            <span class="copy-payment-label">Номер карты</span>
+            <span class="copy-payment-value" id="paymentCard">
+                2200 3961 1188 2920
+            </span>
+        </div>
 
-                    <br>
+        <button
+            type="button"
+            class="copy-button"
+            data-copy-target="paymentCard"
+        >
+            Скопировать
+        </button>
+    </div>
 
-                    +7 923 022 93 23
-
-                    <br><br>
-
-                    <strong>
-                        Номер карты:
-                    </strong>
-
-                    <br>
-
-                    2200 3961 1188 2920
-
-                </div>
+</div>
 
 
                 <div class="warning">
@@ -2262,9 +2336,21 @@ a{
                     <br><br>
 
                     Обязательно укажите номер заказа
-                    <strong id="paymentOrderNumber">
-                        —
-                    </strong>
+                   <span class="order-copy-row">
+
+    <strong id="paymentOrderNumber">
+        —
+    </strong>
+
+    <button
+        type="button"
+        class="copy-button"
+        id="copyOrderButton"
+    >
+        Скопировать
+    </button>
+
+</span>
                     в сообщении к переводу.
 
                 </div>
@@ -3186,6 +3272,54 @@ function openPayment(
 
 }
 
+document
+    .getElementById("copyOrderButton")
+    .addEventListener(
+        "click",
+        function(){
+
+            const order =
+                document
+                    .getElementById("paymentOrderNumber")
+                    .textContent
+                    .trim();
+
+            if(
+                order &&
+                order !== "—"
+            ){
+                copyText(order);
+            }
+
+        }
+    );
+   
+       async function copyText(text){
+try{
+await navigator.clipboard.writeText(text);
+showToast("✓ Скопировано");
+}catch(error){
+const textarea = document.createElement("textarea");
+
+textarea.value = text;
+textarea.style.position = "fixed";
+textarea.style.opacity = "0";
+
+document.body.appendChild(textarea);
+
+textarea.select();
+
+try{
+document.execCommand("copy");
+showToast("✓ Скопировано");
+}catch(error){
+showToast("Не удалось скопировать");
+}
+
+textarea.remove();
+}
+}
+
 
 /* =========================================================
    FILE
@@ -3558,6 +3692,35 @@ sendButton
     );
 
 
+document
+    .querySelectorAll(".copy-button")
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                function(){
+
+                    const target =
+                        document.getElementById(
+                            this.dataset.copyTarget
+                        );
+
+                    if(!target){
+                        return;
+                    }
+
+                    copyText(
+                        target.textContent.trim()
+                    );
+
+                }
+            );
+
+        }
+    );
+
+   
 /* =========================================================
    INITIALIZE
 ========================================================= */
